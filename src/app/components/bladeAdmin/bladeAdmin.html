@@ -1,0 +1,92 @@
+<md-toolbar>
+    <div class="md-toolbar-tools" layout-align="space-between center">
+        <section>
+            <md-button ng-click="" class="md-primary">{{'objects' | translate}}</md-button>
+            <md-button ng-click="" class="md-primary">{{'account' | translate}}</md-button>
+            <md-button ng-click="" class="md-primary">{{'comments' | translate}}</md-button>
+        </section>
+    </div>
+</md-toolbar>
+<md-content layout="column" class="overview-content-container">
+    <div class="md-display-1">
+        {{'filter' | translate}}
+    </div>
+
+
+    <!-- search -->
+    <div layout="row" class="b-padding" layout-align="start end">
+        <div flex="100">
+            <md-input-container>
+                <label>{{'search' | translate}}</label>
+                <input>
+            </md-input-container>
+        </div>
+    </div>
+
+    <!-- search results -->
+    <div layout="column">
+        <div layout="row" class="b-padding">
+            <div class="md-title" flex="60">{{'fields.titleOrName' | translate}}</div>
+            <div flex="5"></div>
+            <div class="md-title" flex="15">{{'fields.type' | translate}}</div>
+            <div class="md-title" flex="20"></div>
+        </div>
+
+        <div layout="row"  ng-repeat="i in [1, 2, 3, 4]" class="md-list-selectable">
+            <div flex="60">
+                <md-list>
+                    <md-list-item class="md-2-line">
+                        <div style="background-image:url(https://images.unsplash.com/photo-1465205568425-23fdd3805e49?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=7e476dbc9096ec1c869bd2cb97d82c70)" class="md-avatar"></div>
+                        <div class="md-list-item-text" layout="column">
+                            <h3>Objekt Name, wie Urs Müller</h3>
+                            <p>Economic Assessment of Industrial and Municipal Waste Treatment Options and Waste-to-Energy (WtE) Systems</p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+            <div flex="5"></div>
+            <div flex="15" layout="row" layout-align="start center">{{'project' | translate}}</div>
+            <div flex="20" layout="row" layout-align="end center">
+                <md-button class="md-icon-button" >
+                    <md-tooltip md-direction="top">
+                        {{'edit' | translate}}
+                    </md-tooltip>
+                    <md-icon flex layout-align="center center">
+                        <i class="material-icons">&#xE3C9;</i>
+                    </md-icon>
+                </md-button>
+                <md-button class="md-icon-button">
+                    <md-tooltip md-direction="top">
+                        {{'account' | translate}}
+                    </md-tooltip>
+                    <md-icon flex layout-align="center center">
+                        <i class="material-icons">&#xE8D3;</i>
+                    </md-icon>
+                </md-button>
+
+
+                <md-menu md-position-mode="target-right target">
+                    <md-button class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu($event)">
+                        <md-tooltip md-direction="top">
+                            {{'more' | translate}}
+                        </md-tooltip>
+                        <md-icon md-menu-origin layout-align="center center">
+                            <i class="material-icons">&#xE5D4;</i>
+                        </md-icon>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ng-click="ctrl.announceClick($index)">
+                                <md-icon>
+                                    <i class="material-icons">&#xE872;</i>
+                                </md-icon>
+                                {{'delete' | translate}}
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+
+            </div>
+        </div>
+    </div>
+</md-content>

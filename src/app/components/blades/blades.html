@@ -1,0 +1,24 @@
+<!-- blades container drag-scroll axis="x" -->
+<blades layout="row" class="blades">
+    <div layout="row" class="blade-wrapper" ng-repeat="blade in blades.currentBlades track by $index">
+        <blade-overview class="blade blade--overview" ng-if="blade.meta.type == 'overview'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-overview>
+        <blade-extended class="blade blade--extended" ng-if="blade.meta.type == 'extended'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-extended>
+        <blade-detail class="blade blade--detail" ng-if="blade.meta.type == 'detail'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-detail>
+        <blade-edit class="blade blade--detail blade--edit" ng-if="blade.meta.type == 'edit'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-edit>
+        <blade-permission class="blade blade--extended" ng-if="blade.meta.type == 'permission'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-permission>
+        <blade-edit-extended class="blade blade--extended" ng-if="blade.meta.type == 'edit-libary' || blade.meta.type == 'edit-publications' || blade.meta.type == 'edit-contacts'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-edit-extended>
+        <blade-edit-relations class="blade blade--extended" ng-if="blade.meta.type == 'edit-relations'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-edit-relations>
+        <blade-edit-jobs class="blade blade--extended" ng-if="blade.meta.type == 'edit-jobs'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-edit-jobs>
+        <blade-edit-sessions class="blade blade--extended" ng-if="blade.meta.type == 'edit-sessions'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-edit-sessions>
+        <blade-home class="blade blade--overview" ng-if="blade.meta.type == 'home'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-home>
+        <blade-stream class="blade blade--extended" ng-if="blade.meta.type == 'stream'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-stream>
+        <blade-login class="blade blade--extended" ng-if="blade.meta.type == 'login'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-login>
+        <blade-admin class="blade blade--overview" ng-if="blade.meta.type == 'admin'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-admin>
+        <blade-myobjects class="blade blade--overview" ng-if="blade.meta.type == 'myobjects'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-myobjects>
+        <blade-account class="blade blade--overview" ng-if="blade.meta.type == 'account'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-account>
+        <blade-admin-permissions class="blade blade--overview" ng-if="blade.meta.type == 'admin-permissions'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-admin-permissions>
+        <blade-admin-permissions-detail class="blade blade--overview" ng-if="blade.meta.type == 'admin-permissions-detail'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-admin-permissions-detail>
+        <blade-edit-image class="blade blade--extended" ng-if="blade.meta.type == 'edit-image'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-edit-image>
+        <blade-extended-associations class="blade blade--extended" ng-if="blade.meta.type == 'extended-associations'" sdr-meta="blade.meta" sdr-data="blade.data"></blade-extended-associations>
+    </div>
+</blades>

@@ -1,0 +1,7 @@
+<md-select ng-model="ctrl.selectedItems" multiple ng-change="ctrl.syncLists()">
+    <md-optgroup ng-repeat="groups in ctrl.disciplines" label="{{groups.groupName | sdrlang}}">
+        <md-option ng-value="discipline" ng-repeat="discipline in groups.items" ng-selected="discipline.active === true ? true : false">
+            {{discipline.name | sdrlang}}
+        </md-option>
+    </md-optgroup>
+</md-select>

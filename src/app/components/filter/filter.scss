@@ -1,0 +1,95 @@
+/// <reference path="../../styles/_variables.scss" />
+
+.filter {
+    background-color: $grey;
+    margin: 1rem 0;
+    margin-right: 1.6rem;
+    padding: 1rem;
+
+    @media #{$media-l} {
+        margin-right: 0;
+    }
+    .input-wrap {
+        position: relative;
+    }
+
+    .md-list-item__delete {
+        position: absolute;
+        top: .8rem;
+        opacity: .5;
+        right: 0;
+
+        &:hover {
+            opacity: .87;
+        }
+    }
+
+    .md-subhead {
+        padding-top: 1rem;
+        padding-bottom: 0.5rem;
+    }
+
+    md-autocomplete md-input-container {
+        padding-bottom: 0;
+    }
+
+    filter-assocated md-icon {
+        float: right;
+        left: -6px;
+        top: -26px;
+        position: relative;
+        color: black;
+    }
+
+    md-input-container .md-errors-spacer {
+        min-width: 0;
+    }
+
+    .md-display-1 {
+        margin-bottom: 1rem;
+    }
+
+    .md-datepicker-input-container {
+        margin-left: 2px;
+        display: block;
+    }
+
+    .md-datepicker-calendar-pane {
+        background-color: $grey;
+    }
+
+    .md-datepicker-button {
+        display: none;
+    }
+
+    .filter-btn {
+        margin-top: 2rem;
+    }
+
+    md-chips-wrap {
+        padding-bottom: 1rem;
+        margin-bottom: .67rem;
+    }
+
+    .md-chips {
+
+        .md-chip-input-container {
+            margin-top: 1.4rem !important;
+        }
+    }
+
+    md-chips md-chip {
+        font-size: .75rem;
+        height: 28px;
+        line-height: 28px;
+
+        md-icon {
+            svg {
+                width: 16px;
+                height: 16px;
+                margin-top: 2px;
+                margin-left: 4px;
+            }
+        }
+    }
+}

@@ -1,0 +1,125 @@
+<div class="blade-bar">
+    <md-content class="h-padding">
+        <div class="md-title">Bearbeite {{blade.sdrData.fullname}}</div>
+    </md-content>
+    <a class="close-btn" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">close</i>
+    </a>
+</div>
+
+<form name="blade.editForm">
+<md-content layout="column" class="overview-content-container">
+    <h2>{{'account' | translate}}</h2>
+
+
+
+    <div layout="column" class="b-padding">
+
+        <!--
+        <div flex="33">
+
+            <div class="editable-area">
+                <div class="image block well"
+                     md-whiteframe="3"
+                     style="background-image: url({{!blade.accountData._embedded.profileImage.url ? '/assets/images/bg-svg.svg' : blade.accountData._embedded.profileImage.url}})">
+                    <md-button ng-show="!blade.loadingImage" class="md-fab md-mini md-primary" aria-label="Edit" type="file" ngf-select="blade.uploadPictures($files, $invalidFiles, blade.setProfilePicture)" accept="image/*">
+                        <md-icon><i class="material-icons">&#xE3C9;</i></md-icon>
+                    </md-button>
+
+                    <md-progress-circular ng-show="blade.loadingImage" md-mode="indeterminate" md-diameter="30" class="loading-image"></md-progress-circular>
+                </div>
+
+
+            </div>
+            <md-button ng-click="blade.removeProfilePicture();" class="md-fab md-mini md-primary" aria-label="Delete">
+                <md-icon><i class="material-icons">delete</i>
+                </md-icon>
+            </md-button>
+
+            <input type="hidden" ng-model="blade.accountData.profileImageId" />
+        </div>
+        -->
+
+        <div flex="67" layout="column">
+            <div layout="row" layout-wrap>
+                <div flex="100">
+                    <md-input-container>
+                        <label>{{'fields.salutation' | translate}}</label>
+                        <md-select ng-model="blade.sdrData.gender">
+                            <md-option ng-value="opt" ng-repeat="opt in ['male', 'female']">{{ opt | translate }}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div flex="100">
+                    <md-input-container>
+                        <label>{{'fields.title' | translate}}</label>
+                        <input ng-model="blade.sdrData.title">
+                    </md-input-container>
+                </div>
+                <div flex="100">
+                    <md-input-container>
+                        <label>{{'fields.fullname' | translate}}</label>
+                        <input ng-model="blade.sdrData.fullname">
+                    </md-input-container>
+                </div>
+                <div flex="100">
+                    <md-input-container>
+                        <label>{{'fields.email' | translate}}</label>
+                        <input ng-model="blade.sdrData.eMail">
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+
+        <div flex="67" layout="column">
+            <div layout="row" layout-wrap>
+                <div flex="100">
+                    <h3 class="md-display-1">
+                        {{'claims' | translate}}
+                    </h3>
+
+                    <div>
+                        <div ng-repeat="claim in blade.claimsCreateEntityOfType" ng-click="blade.refreshPermissions()">
+                            <md-checkbox ng-model="claim.checked">
+                                {{ claim.value | translate }}
+                            </md-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div flex="67" layout="column">
+            <div layout="row" layout-wrap>
+                <div flex="100">
+                    <h3 class="md-display-1">
+                        {{'administration' | translate}}
+                    </h3>
+
+                    <div>
+                        <div ng-repeat="claim in blade.claimsAdmins" ng-click="blade.refreshPermissions()">
+                            <md-checkbox ng-model="claim.checked">
+                                {{ claim.type }}
+                            </md-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</md-content>
+
+<div class="toolbar">
+    <div class="close-btn--toolbar" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">arrow_back</i>
+    </div>
+
+    <md-button ng-disabled="blade.editForm.$pristine" ng-click="blade.save()" class="md-raised md-primary" aria-label="Save">
+        <md-icon><i class="material-icons">save</i></md-icon>
+    </md-button>
+    <md-button ng-click="blade.sdrMeta.remove()" class="md-raised md-primary" aria-label="Close">
+        <md-icon><i class="material-icons">close</i></md-icon>
+    </md-button>
+
+</div>
+</form>

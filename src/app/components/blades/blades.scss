@@ -1,0 +1,127 @@
+/// <reference path="../../../assets/styles/_variables.scss" />
+
+blades {
+    width: 100%;
+    height: 100%;
+    // overflow: hidden;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    position: relative;
+
+    .blade-wrapper {
+        padding-top: calc(1.6rem);
+
+        @media #{$media-m} {
+            padding-top: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 300;
+        }
+    }
+
+    .blade {
+        height: calc(100vh - 3.6rem);
+        height: calc(100vh - 2.6rem);
+        // height: calc(100vh - 1.6rem);
+        background-color: $white;
+        margin-left: 1rem;
+        overflow: auto;
+        position: relative;
+        overflow-x: hidden;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -webkit-overflow-scrolling: touch;
+
+        box-sizing: border-box;
+
+        @media #{$media-m} {
+            min-width: 0 !important;
+            max-width: none !important;
+            //width: calc(100vw - 64px) !important;
+            width: 100vw !important;
+            margin-left: 0;
+            height: 100vh;
+        }
+
+        .blade {
+            margin-left: 0;
+        }
+    }
+
+    .blade--overview {
+        width: 80vw;
+        min-width: 900px;
+        max-width: 1100px;
+
+        @media #{$media-l} {
+            min-width: 640px;
+        }
+
+        @media #{$media-m} {
+        }
+    }
+
+    .blade--extended {
+        width: 30vw;
+        min-width: 480px;
+        max-width: 550px;
+
+        @media #{$media-m} {
+            display: none; //////////////////// must be removed/closed via javascript
+        }
+    }
+
+    md-toolbar md-content {
+        color: $white;
+    }
+
+
+    .md-virtual-repeat-container {
+        height: 100%;
+    }
+
+    .blade-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        top: 40px;
+        bottom: 0;
+        overflow: auto;
+
+        @media #{$media-m} {
+            top: 50px;
+        }
+    }
+
+    .blade-container--overview {
+        top: 0;
+    }
+
+    .blade-container.has-toolbar {
+        bottom: 60px;
+    }
+
+    .filter-wrapper {
+        @media #{$media-l} {
+            width: 100%;
+            max-width: 100% !important;
+            display: block;
+        }
+    }
+
+    .overview-content-container {
+        @media #{$media-l} {
+            display: block;
+        }
+    }
+
+    .overview-content {
+        @media #{$media-l} {
+            display: block;
+            width: 100%;
+            max-width: 100% !important;
+        }
+    }
+}

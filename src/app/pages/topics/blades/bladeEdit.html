@@ -1,0 +1,200 @@
+<!-- blade edit hc -->
+
+<div class="blade-bar">
+    <md-content class="h-padding">
+        <div class="md-title">Bearbeite {{blade.sdrData.firstname}} {{blade.sdrData.lastname}}</div>
+    </md-content>
+    <a class="close-btn" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">close</i>
+    </a>
+</div>
+<form name="blade.editForm">
+<div class="blade-container has-toolbar">
+    <md-content>
+        <div layout="column" class="b-padding">
+            <div flex="100" layout="column">
+                <h2 class="md-display-1">
+                    {{'fields.information' | translate}}
+                </h2>
+                <div layout="row" layout-wrap>
+                    <div flex="100">
+                        <multilanguage-input sdr-model="blade.sdrData.name">
+                            <md-input-container>
+                                <label>{{'fields.name' | translate}}</label>
+                                <input ng-model="$parent.multiLangContent" name="name" ng-class="{'has-error' : blade.hasError('name')}">
+                            </md-input-container>
+                        </multilanguage-input>
+                    </div>
+                    <div flex="100">
+                        <multilanguage-input sdr-model="blade.sdrData.description">
+                            <md-input-container>
+                                <label>{{'fields.description' | translate}}</label>
+                                <textarea ng-model="$parent.multiLangContent"></textarea>
+                            </md-input-container>
+                        </multilanguage-input>
+                    </div>
+                    <div flex="100">
+                        <md-input-container>
+                            <label>{{'fields.type' | translate}}</label>
+                            <md-select ng-model="blade.sdrData.type">
+                                <md-option ng-value="typ" ng-repeat="typ in ['normal','unTopic','unSDG']">{{typ | translate}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- profilbeschreibung -->
+        <div class="b-padding">
+
+            <h2 class="md-display-1">
+                {{'fields.content' | translate}}
+            </h2>
+
+            <md-content style="background-color: #ECEFF1;">
+                <multilanguage-input sdr-model="blade.sdrData.content" show-rich-text-tabs="true">
+                    <text-angular ng-model="$parent.multiLangContent.data"
+                                  ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'p', 'bold', 'underline', 'italics',  'indent', 'outdent', 'ul', 'ol', 'insertImage','insertLink','html']]"
+                                  ta-toolbar-button-class=""
+                                  ta-paste="blade.modifyHtml($html)">
+
+                    </text-angular>
+                </multilanguage-input>
+            </md-content>
+        </div>
+
+        <!-- images -->
+        <div class="b-padding">
+
+            <h2 class="md-display-1">
+                {{'fields.images' | translate}}
+            </h2>
+            <div layout="row" layout-wrap>
+                <div flex="100">
+                    <md-list layout-sm="column">
+                        <md-list-item class="md-2-line compact" ng-repeat="associated in blade.sdrData._embedded.images.items">
+
+                            <div ng-if="associated.urls" style="background-image:url('{{associated.urls.thumbnail}}')" class="md-avatar"></div>
+                            <div ng-if="!associated.urls" style="background-image:url('/assets/images/bg-svg.svg')" class="md-avatar"></div>
+
+                            <div class="md-list-item-text">
+                                <h3>{{associated.title | sdrlang}}</h3>
+                                <p>{{associated.description | sdrlang}}</p>
+                            </div>
+
+                            <div class="md-list-item__delete" ng-click="blade.removeFromElements($index, blade.sdrData._embedded.images.items)">
+                                <i class="material-icons">delete</i>
+                            </div>
+
+                        </md-list-item>
+                    </md-list>
+
+                    <div ngf-select="blade.uploadPictures($files, $invalidFiles, blade.addImage)" ngf-max-size="5MB" ngf-drop="blade.uploadPictures($files, $invalidFiles, blade.addImage)" ngf-drop-available="dropAvailable" multiple accept="image/*">
+
+                        <span ng-show="dropAvailable" class="">
+                            {{'fields.selectfile' | translate}}
+                        </span>
+                        <md-progress-linear ng-show="blade.showUpload" md-mode="determinate" value="{{blade.uploadPercentage}}"></md-progress-linear>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+        </div>
+
+        <!-- sdg's -->
+        <div class="b-padding">
+
+            <h2 class="md-display-1">
+                {{'UN_SDGS' | translate}}
+            </h2>
+            <div layout="row" layout-wrap>
+                <div flex="50">
+                    <md-autocomplete md-no-cache="false"
+                                     ng-model-options="{debounce: 600}"
+                                     md-search-text="blade.searchSdgsText"
+                                     md-selected-item-change="blade.addSDG(item)"
+                                     md-items="item in blade.querySdgs(blade.searchSdgsText)"
+                                     md-item-text="item.name | sdrlang"
+                                     md-min-length="0"
+                                     md-max-length="50"
+                                     md-floating-label="{{'UN_SDG' | translate}}">
+                        <md-item-template>
+                            <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.name | sdrlang}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            "{{blade.searchSdgsText}}" {{'notfound' | translate}}.
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+
+                <div flex="50">
+                    <md-list-item class="md-2-line" ng-repeat="sdg in blade.sdrData.unSdgList track by $index">
+
+                        <div ng-if="sdg.image" style="background-image:url('{{sdg.image.url}}')" class="md-avatar"></div>
+                        <div ng-if="!sdg.image" style="background-image:url('/assets/images/bg-svg.svg')" class="md-avatar"></div>
+
+                        <div class="md-list-item-text">
+                            <h3>{{sdg.name | sdrlang}}</h3>
+                            <p>{{sdg.description | sdrlang}}</p>
+                        </div>
+
+                        <div class="md-list-item__delete" ng-click="blade.removeFromSDGElements($index)">
+                            <i class="material-icons">delete</i>
+                        </div>
+
+                    </md-list-item>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+        </div>
+
+        <!-- tags -->
+        <div class="b-padding">
+            <h2 class="md-display-1">
+                {{'fields.tags' | translate}}
+            </h2>
+
+            <div layout="row" layout-wrap>
+                <md-chips ng-model="blade.sdrData.tags " md-autocomplete-snap="" md-transform-chip="blade.transformChip($chip)" md-require-match="false">
+                    <md-autocomplete md-selected-item="selectedTag"
+                                     md-search-text="blade.searchTagText"
+                                     md-items="item in blade.queryTags(blade.searchTagText)"
+                                     md-item-text="item.name"
+                                     class="md-block"
+                                     ng-class="{'has-error' : blade.hasError('tags')}"
+                                     name="tags"
+                                     required>
+                        <span md-highlight-text="searchTag">{{item.name}}</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <span>
+                          <strong>{{$chip}}</strong>
+                        </span>
+                    </md-chip-template>
+                </md-chips>
+
+                <p ng-show="blade.hasError('tags')" class="error">
+                    {{'errors.tags' | translate}}
+                </p>
+            </div>
+            <div class="divider"></div>
+        </div>
+    </md-content>
+</div>
+
+
+<div class="toolbar">
+    <div class="close-btn--toolbar" ng-click="blade.remove()">
+        <i class="material-icons">arrow_back</i>
+    </div>
+    <md-button ng-disabled="blade.editForm.$pristine || blade.disableSave" ng-click="blade.save()" class="md-raised md-primary" aria-label="Save">
+        <md-icon><i class="material-icons">save</i></md-icon>
+    </md-button>
+    <md-button ng-click="blade.delete()" class="md-raised md-primary" aria-label="Delete">
+        <md-icon><i class="material-icons">delete</i></md-icon>
+    </md-button>
+</div>
+</form>

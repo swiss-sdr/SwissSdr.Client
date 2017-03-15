@@ -1,0 +1,62 @@
+/// <reference path="../../styles/_variables.scss" />
+
+overview-header {
+    header {
+        background-position: center;
+        background-size: cover;
+        height: 400px;
+        background-image: url(/assets/temp/people_header.png);
+        position: relative;
+        background-color: $base;
+    }
+
+    form {
+    }
+
+    md-autocomplete input:not(.md-input) {
+        background-image: url(/assets/icons/search.svg);
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        padding-left: 2.6rem;
+    }
+
+    .container {
+        width: 80%;
+        max-width: 540px !important;
+        background-color: rgba($base, .7);
+        padding: 0.6rem;
+        -moz-border-radius: 1px;
+        -webkit-border-radius: 1px;
+        border-radius: 1px;
+
+        .md-button {
+            margin: 0;
+            height: 40px;
+            min-height: 40px;
+            line-height: 40px;
+        }
+    }
+
+    .container__description {
+        color: $white;
+        line-height: 1.4;
+        padding: .2rem;
+        padding-bottom: .8rem;
+
+        .md-headline {
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: .5rem;
+        }
+    }
+
+    .container__inputs {
+        margin: 0;
+        padding-bottom: .2rem;
+    }
+
+    .input-wrapper {
+        flex-grow: 1;
+        margin: 0 .2rem;
+    }
+}

@@ -1,0 +1,78 @@
+.blade--detail {
+    width: 70vw;
+    min-width: 768px;
+    max-width: 1000px;
+
+    .detail-header {
+        * {
+            color: $white;
+        }
+
+
+        .md-display-1 {
+            margin: 0;
+            font-size: 2.6em;
+            font-weight: bold;
+        }
+
+        .md-subhead {
+            margin-bottom: 0;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+
+        header {
+            height: 400px;
+            position: relative;
+            background-color: $base;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        .detail-header__content {
+            @media #{$media-m} {
+                display: block !important;
+            }
+        }
+
+        .detail-header__image {
+            width: 170px;
+            min-width: 170px;
+            height: 170px;
+            background-position: center;
+            background-size: cover;
+            margin: auto;
+            display: inline-block;
+            margin-right: 1rem;
+
+            @media #{$media-m} {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    }
+
+    .md-list-item-text {
+        span {
+            display: block;
+        }
+    }
+
+    .detail-content-container {
+        @media #{$media-m} {
+            display: block !important;
+        }
+    }
+
+    .detail-content {
+        width: 100%;
+        max-width: 100% !important;
+        display: block;
+    }
+
+    .md-sidenav-right {
+        width: 100%;
+        max-width: 100% !important;
+        display: block;
+    }
+}

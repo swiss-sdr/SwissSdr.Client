@@ -1,0 +1,129 @@
+<div class="navigation" flex layout="column" layout-align="space-between center">
+    <a ui-sref="main.blades({type: 'home', id: ''})" class="logo">
+        <img src="/assets/images/swiss-sdr_logo.png" alt="swiss sdr" />
+    </a>
+    <section layout="column">
+        <ul class="navigation-list">
+            <li ui-sref-active="active">
+                <md-button aria-label="Themen" layout="row" ui-sref="main.blades({type: 'topics', id: ''})"  class="md-icon-button">
+                    <md-icon md-svg-src="/assets/icons/topics.svg"></md-icon>
+                </md-button><br />
+                <span ng-bind-html="'menu.topics' | translate"></span>
+            </li>
+            <li ui-sref-active="active">
+                <md-button aria-label="Projekte" layout="row" ui-sref="main.blades({type: 'projects', id: ''})" class="md-icon-button">
+                    <md-icon md-svg-src="/assets/icons/projects.svg"></md-icon>
+                </md-button><br />
+                <span ng-bind-html="'menu.projects' | translate"></span>
+            </li>
+            <li ui-sref-active="active">
+                <md-button aria-label="Personen" ui-sref="main.blades({type: 'people', id: ''})" class="md-icon-button">
+                    <md-icon md-svg-src="/assets/icons/people.svg"></md-icon>
+                </md-button><br />
+                <span ng-bind-html="'menu.people' | translate"></span>
+            </li>
+            <li ui-sref-active="active">
+                <md-button aria-label="Unternehmen" ui-sref="main.blades({type: 'organisations', id: ''})"  class="md-icon-button">
+                    <md-icon md-svg-src="/assets/icons/organisations.svg"></md-icon>
+                </md-button><br />
+                <span ng-bind-html="'menu.organisations' | translate"></span>
+            </li>
+            <li ui-sref-active="active">
+                <md-button aria-label="Veranstaltungen" ui-sref="main.blades({type: 'events', id: ''})"  class="md-icon-button">
+                    <md-icon md-svg-src="/assets/icons/events.svg"></md-icon>
+                </md-button><br />
+                <span ng-bind-html="'menu.events' | translate"></span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="">
+        <ul class="navigation-list sub-nav">
+
+            <li ui-sref-active="active">
+                <md-menu>
+
+                    <md-button aria-label="Mehr" ui-sref="main.people" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                        <md-icon ng-if="!navbar.me || navbar.me.profile.profileImage === undefined"><i class="material-icons">dehaze</i></md-icon>
+
+                        <img ng-if="navbar.me && navbar.me.profile.profileImage !== undefined" ng-src="{{navbar.me.profile.profileImage}}" class="md-avatar" alt="{{navbar.me.nameShortCut}}" />
+                    </md-button>
+
+                    <md-menu-content width="4">
+                        <section class="language-switcher" width="4">
+                            <md-button ng-class="{'md-primary' : navbar.isLanguage('de')}" ng-click="navbar.switchLanguage('de')">
+                                DE
+                            </md-button>
+                            <md-button ng-class="{'md-primary' : navbar.isLanguage('fr')}" ng-click="navbar.switchLanguage('fr')">
+                                FR
+                            </md-button>
+                            <md-button ng-class="{'md-primary' : navbar.isLanguage('it')}"  ng-click="navbar.switchLanguage('it')">
+                                IT
+                            </md-button>
+                            <md-button ng-class="{'md-primary' : navbar.isLanguage('en')}" ng-click="navbar.switchLanguage('en')">
+                                EN
+                            </md-button>
+                        </section>
+
+                        <md-menu-divider></md-menu-divider>
+
+                        <md-menu-item ng-if="navbar.me">
+                            <md-button aria-label="Objekte" ui-sref="main.blades({type: 'myobjects', id: ''})">
+                                {{'myobjects' | translate}}
+                            </md-button>
+                        </md-menu-item>
+
+                        <md-menu-item ng-if="navbar.me">
+                            <md-button aria-label="Account" ui-sref="main.blades({type: 'account', id: ''})">
+                                {{'account' | translate}}
+                            </md-button>
+                        </md-menu-item>
+
+                        <md-menu-item ng-if="navbar.me && navbar.$rootScope.isAdmin">
+                            <md-button aria-label="Permissions" ui-sref="main.blades({type: 'permissions', id: ''})">
+                                {{'admin' | translate}}
+                            </md-button>
+                        </md-menu-item>
+
+
+                        <md-menu-item ng-if="navbar.me">
+                            <md-button aria-label="Logout" ng-click="navbar.logout()">
+                                {{'Logout' | translate}}
+                            </md-button>
+                        </md-menu-item>
+
+                        <!-- Account Menu -->
+                        <md-menu-divider ng-if="navbar.me"></md-menu-divider>
+
+                        <md-menu-item>
+                            <md-button href="https://martin-schmied-cwja.squarespace.com/" target="_blank">
+                                {{'aboutUs' | translate}}
+                            </md-button>
+                        </md-menu-item>
+
+                        <md-menu-item>
+                            <md-button href="https://martin-schmied-cwja.squarespace.com/kontakt" target="_blank">
+                                {{'contactSupport' | translate}}
+                            </md-button>
+                        </md-menu-item>
+
+                        <md-menu-item>
+                            <md-button href="https://martin-schmied-cwja.squarespace.com/impressum" target="_blank">
+                                {{'impress' | translate}}
+                            </md-button>
+                        </md-menu-item>
+
+                        <md-menu-item>
+                            <md-button href="https://martin-schmied-cwja.squarespace.com/nutzungsbedingungenagb" target="_blank">
+                                {{'termsofuse' | translate}}
+                            </md-button>
+                        </md-menu-item>
+
+                    </md-menu-content>
+
+                </md-menu>
+            </li>
+
+        </ul>
+    </section>
+</div>

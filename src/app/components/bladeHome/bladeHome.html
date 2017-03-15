@@ -1,0 +1,44 @@
+<overview-header sdr-service="blade.sdrMeta.Service"
+                 sdr-label="'searchAllObjects' | translate"
+                 sdr-parent="blade"></overview-header>
+
+<div ng-show="blade.loading" layout="row" layout-sm="column" layout-align="space-around">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<md-content ng-repeat="parentObject in blade.ovObjects" class="home-content-container"
+    style="background-image:url('{{parentObject._embedded.image.urls.large}}')">
+
+    <div class="home-content-block" flex layout="row" layout-align="none end">
+
+        <section class="cards" flex layout="row" layout-wrap layout-align="space-between none">
+            <div class="card"
+                 ng-repeat="object in parentObject.relatedObjects"
+                 md-whiteframe="1">
+
+                <div class="card__image" ng-click="blade.open(object._embedded.data)">
+                    <div ng-if="object.displayImageUrl" class="card__image__pic" style="background-image:url('{{object.displayImageUrl}}')"></div>
+                    <div ng-if="!object.displayImageUrl" class="card__image__pic" style="background-image:url('/assets/images/bg-svg.svg')"></div>
+                </div>
+
+                <md-content>
+                    <div class="card__info card__info--primary"
+                         ng-click="blade.openObjects(object._embedded.data)">
+                        {{object.displayName}}
+                    </div>
+                </md-content>
+            </div>
+        </section>
+
+
+        <section class="topic-summary">
+            <h2 class="md-display-2 topic-title">{{parentObject.name | sdrlang}}</h2>
+            <p>
+                {{ parentObject.description | sdrlang }}
+            </p>
+            <!--<md-button class="md-raised md-primary">Primary</md-button> -->
+        </section>
+    </div>
+
+
+</md-content>

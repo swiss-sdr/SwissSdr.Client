@@ -1,0 +1,36 @@
+<div class="blade-bar">
+    <md-content class="h-padding">
+        <div ng-if="blade.me" class="md-title">{{'welcome' | translate}}</div>
+        <div ng-if="!blade.me" class="md-title">{{'login' | translate}}</div>
+    </md-content>
+    <a class="close-btn" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">close</i>
+    </a>
+</div>
+<div class="blade-container" ng-cloak>
+    <!--
+    <md-content ng-if="blade.me" >
+        <section class="login-area b-padding">
+            <p translate="welcomeBlurb"></p>
+        </section>
+    </md-content>
+    -->
+    <md-content ng-if="!blade.me" >
+        <section class="login-area b-padding">
+
+            <p translate="loginTextUp"></p>
+
+            <!-- button Swiss edu-ID -->
+            <md-button ng-click="blade.login()" class="md-raised md-primary block align-left" >
+                <md-icon class="name">
+                    <i class="material-icons">&#xE7FD;</i>
+                </md-icon>
+                {{'login' | translate}}
+            </md-button>
+
+            <p translate="loginTextBottom"></p>
+
+        </section>
+
+    </md-content>
+</div>

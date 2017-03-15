@@ -1,0 +1,208 @@
+<div class="blade-bar">
+    <md-content class="h-padding">
+        <div class="md-title">{{blade.sdrData.name | sdrlang}}</div>
+    </md-content>
+    <a class="close-btn" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">close</i>
+    </a>
+</div>
+
+<div class="blade-container has-toolbar">
+    <div class="detail-header">
+        <header layout="row" layout-align="left end" style="background-image: url(/assets/images/bg-svg.svg)">
+            <md-content layout="row" layout-align="left end" class="detail-header__content">
+                <div class="detail-header__image"
+                     data-temp-alt="{{blade.sdrData._embedded.profileImage.name.value}}"
+                     md-whiteframe="7"
+                     style="background-image: url('{{blade.sdrData._embedded.profileImage.urls.thumbnail}}')">
+                </div>
+                <div>
+                    <h1 class="md-display-1 white" ng-bind-html="blade.sdrData.name | sdrlang">
+                    </h1>
+                    <h2 class="md-subhead" ng-bind-html="blade.sdrData.title">
+                    </h2>
+
+
+                </div>
+                <h2></h2>
+            </md-content>
+            <!-- Follow Toggle -->
+        </header>
+    </div>
+    <div layout="row" class="detail-content-container">
+        <md-content class="b-padding detail-content" flex="60">
+            <div class="h-padding">
+                <div ></div>
+
+                <p ng-bind-html="blade.getDescription(blade.sdrData.profile,blade.Config.getLanguage().code).data">
+                </p>
+
+            </div>
+
+            <br />
+
+            <div ng-if="blade.sdrData.disciplines.length > 0">
+                <h3 class="md-display-1">{{'fields.disciplines' | translate}}</h3>
+
+                <ul>
+                    <li ng-repeat="discipline in blade.sdrData.disciplines | orderBy:['subgroup','discipline']">
+                        {{discipline.name | sdrlang}}
+                    </li>
+                </ul>
+            </div>
+
+
+            <div ng-if="blade.sdrData.interestAreas.length > 0">
+                <h3 class="md-display-1">{{'Forschungsgebiete' | translate}}</h3>
+
+                <md-chips ng-model="blade.sdrData.interestAreas" readonly="true">
+                    <md-chip ng-if="$chip">
+                        {{$chip}}
+                    </md-chip>
+                </md-chips>
+            </div>
+
+            <br />
+
+            <div>
+                <h3 ng-if="blade.checkContactInfos()" class="md-display-1">{{'fields.contact' | translate}}</h3>
+
+                <md-list>
+                    <md-list-item ng-repeat="url in blade.sdrData.contactInfo.urls" class="md-2-line">
+                        <md-icon><i class="material-icons">&#xE157;</i></md-icon>
+                        <div class="md-list-item-text">
+                            <h3> <a target="_blank" href="{{url.value}}">{{url.value}}</a> </h3>
+                            <p>{{'fields.link' | translate}}</p>
+                        </div>
+                    </md-list-item>
+                    <md-list-item ng-repeat="email in blade.sdrData.contactInfo.emails" class="md-2-line">
+                        <md-icon><i class="material-icons">&#xE158;</i></md-icon>
+                        <div class="md-list-item-text">
+                            <h3> <a href="mailto:{{email.value}}">{{email.value}}</a> </h3>
+                            <p>{{'fields.email' | translate}} </p>
+                        </div>
+                    </md-list-item>
+                    <md-list-item ng-repeat="number in blade.sdrData.contactInfo.phoneNumbers" class="md-2-line">
+                        <md-icon><i class="material-icons">&#xE0CD;</i></md-icon>
+                        <div class="md-list-item-text">
+                            <h3> {{number.value}} </h3>
+                            <p>{{'fields.phone' | translate}}</p>
+                        </div>
+                    </md-list-item>
+                    <md-list-item ng-repeat="address in blade.sdrData.contactInfo.addresses" class="md-2-line">
+                        <md-icon><i class="material-icons">&#xE55F;</i></md-icon>
+                        <div class="md-list-item-text">
+                            <h3>
+                                <span ng-repeat="addressLine in address.addressLines">{{addressLine}}</span>
+                                <span>{{address.postalCode}} {{address.locality}}</span>
+                                <span>{{address.country}}</span>
+                            </h3>
+                            <p>{{'fields.address' | translate}} </p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+
+            <br />
+
+        </md-content>
+
+        <!-- side nav -->
+        <md-sidenav class="md-sidenav-right"
+                    md-is-locked-open="true"
+                    md-disable-backdrop
+                    flex="40">
+
+            <md-content class="h-padding">
+
+                <h2 ng-if="blade.sdrData._embedded.library.items.length > 0" class="md-display-1">{{'fields.library' | translate}}</h2>
+                <file-url-list items="blade.sdrData._embedded.library.items"></file-url-list>
+
+                <h2 ng-if="blade.sdrData._embedded.jobs.items.length > 0" class="md-display-1">{{'fields.jobs' | translate}}</h2>
+                <md-list ng-if="blade.sdrData._embedded.jobs.items.length > 0" layout-sm="column">
+                    <md-list-item class="md-2-line" ng-repeat="entry in blade.sdrData._embedded.jobs.items">
+                        <md-icon><i class="material-icons">&#xE89E;</i></md-icon>
+                        <div class="md-list-item-text">
+                            <a href="{{entry.url}}" class="block" target="_blank">
+                                <h3>{{entry.name | sdrlang}} | {{entry.function | translate}}</h3>
+                                <p ng-bind-html="entry.contentDesc.data"></p>
+                            </a>
+                        </div>
+                    </md-list-item>
+                </md-list>
+
+                <h2 ng-if="blade.sdrData._embedded.associations.items.length > 0" class="md-display-1">{{'fields.related' | translate}}</h2>
+
+                <md-list ng-repeat="(key, values) in blade.associationsByType" layout-sm="column">
+
+                    <h3>{{key + 's' | translate}}</h3>
+
+                    <md-list-item class="md-2-line" ng-repeat="entry in values | limitTo:7 " ng-click="blade.openObjects(entry.target)">
+
+                        <div ng-if="entry.target._embedded.profileImage.url" style="background-image:url('{{entry.target._embedded.profileImage.url}}')" class="md-avatar"></div>
+                        <div ng-if="!entry.target._embedded.profileImage.url" style="background-image:url('/assets/images/bg-svg.svg')" class="md-avatar"></div>
+
+                        <div class="md-list-item-text" ng-if="entry.associationType == 'stub'">
+                            <h3>{{entry.target.name | sdrlang}}</h3>
+                            <p>{{entry.target.description | sdrlang}}</p>
+                            <p>{{entry.targetType | translate}}</p>
+                        </div>
+
+                        <div class="md-list-item-text" ng-if="entry.associationType == 'entity' && entry.targetType !== 'person'">
+                            <h3>{{entry.target.name | sdrlang}}</h3>
+                        </div>
+
+                        <div class="md-list-item-text" ng-if="entry.associationType == 'entity' && entry.targetType == 'person'">
+                            <h3>{{entry.target.firstname}} {{entry.target.lastname}}</h3>
+                        </div>
+                    </md-list-item>
+
+
+                    <md-button ng-click="blade.openExtendedAssociations(values)" class="md-raised md-primary" aria-label="More" ng-show="values.length > 7">
+                        {{'more' | translate}}
+                    </md-button>
+
+                    <br />
+
+                </md-list>
+
+            </md-content>
+        </md-sidenav>
+    </div>
+    <div layout="row" class="detail-content-container">
+        <md-content flex="100">
+            <div ng-if="blade.sdrData._embedded.images.items.length > 0">
+                <h3 class="md-display-1">{{'fields.images' | translate}}</h3>
+
+                <div class="blade-gallery">
+                    <div class="blade-gallery-element" ng-repeat="image in blade.sdrData._embedded.images.items">
+                        <a class="fancybox" rel="gallery1" ng-href="{{image.urls.large}}"  title="{{image.name | sdrlang}} -
+                            {{blade.getDescription(image.description, blade.Config.getLanguage().code)}}">
+                            <img ng-src="{{image.urls.thumbnail}}" alt="" />
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </md-content>
+    </div>
+
+</div>
+
+<div class="toolbar">
+    <div class="close-btn--toolbar" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">arrow_back</i>
+    </div>
+
+    <!--<md-icon><i class="material-icons">share</i></md-icon>-->
+    <!--<md-icon><i class="material-icons">thumb_up</i></md-icon>-->
+
+    <span ng-repeat="permission in blade.sdrData.permissions">
+        <md-button ng-if="permission == 'fullControl'" ng-click="blade.openPermission()" class="md-raised md-primary" aria-label="Save" ng-disabled="blade.disableButton">
+            <md-icon><i class="material-icons">&#xE8D3;</i></md-icon>
+        </md-button>
+        <md-button ng-if="permission == 'editContent'" ng-click="blade.openEdit()" class="md-raised md-primary" aria-label="Delete">
+            <md-icon><i class="material-icons">edit</i></md-icon>
+        </md-button>
+    </span>
+</div>

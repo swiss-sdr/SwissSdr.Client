@@ -1,0 +1,16 @@
+<md-autocomplete md-no-cache="true"
+                 md-selected-item="ctrl.selectedItem"
+                 md-selected-item-change="ctrl.setNgModel(item)"
+                 ng-model-options="{debounce: 600}"
+                 ng-model="ctrl.ngModel"
+                 md-search-text="ctrl.searchText"
+                 md-items="item in ctrl.search(ctrl.searchText)"
+                 md-item-text="item.value"
+                 md-min-length="0">
+    <md-item-template>
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.value}} </span>
+    </md-item-template>
+    <md-not-found>
+        {{ctrl.sdrNoresultStart}} "{{searchText}}" {{'notfound' | translate}}.
+    </md-not-found>
+</md-autocomplete>

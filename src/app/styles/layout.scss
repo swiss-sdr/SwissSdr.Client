@@ -1,0 +1,203 @@
+﻿/// <reference path="_variables.scss" />
+html {
+    background-color: $baseDark;
+}
+
+html, body {
+    color: $base;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+body {
+    background-color: transparent;
+    //overflow: auto;
+}
+
+p a {
+    color: $base;
+}
+
+navbar {
+    background-color: $base;
+}
+
+.block {
+    display: block;
+}
+
+img.block {
+    width: 100%;
+}
+
+div[ui-view] {
+    width: 100%;
+    height: 100%;
+    background-color: $baseDark;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+.h-padding {
+    padding-top: 0;
+    padding-bottom: 1rem;
+}
+
+.b-padding {
+    padding-bottom: 0.5rem;
+}
+
+.b-margin {
+    margin-bottom: 0.5rem;
+}
+
+.input-wrap {
+    padding: 0.4rem 0 0.8rem;
+}
+
+.icon-wrapper {
+    padding-right: 0.6rem;
+}
+
+.block {
+    display: block;
+    width: 100%;
+}
+
+
+.follow {
+    color: $baseDark;
+    opacity: 0.2;
+}
+
+.follow--active {
+    color: $accent;
+    opacity: 1;
+}
+
+div[ngf-drop] {
+    background-color: $grey;
+    width: 100%;
+    padding: .8rem;
+    cursor: pointer;
+}
+
+div[ngf-drop].dragover {
+    background-color: $accent;
+    color: $white;
+}
+
+.blade-bar {
+    background-color: $grey;
+    position: relative;
+    font-weight: lighter;
+    color: rgba($black,0.2);
+    padding: 0;
+    text-transform: uppercase;
+    height: 40px;
+
+    @media #{$media-m} {
+        display: none;
+    }
+
+    md-content {
+        color: inherit;
+        padding: .6rem 1rem .4rem;
+    }
+
+    .md-title {
+        font-size: 1rem;
+    }
+
+    .close-btn {
+        position: absolute;
+        right: 1rem;
+        display: inline-block;
+        top: 8px;
+
+        &:hover {
+            color: $black;
+        }
+    }
+}
+
+
+.divider {
+    height: 1px;
+    margin: 2rem 0;
+    background-color: $grey;
+}
+
+
+.decent {
+    color: $grey-d;
+}
+
+.small {
+    font-size: .875em;
+}
+
+md-list-item.compact {
+    margin: 0;
+    padding: 0!important;
+
+    & > div {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+.language-switcher {
+    padding: 0 16px;
+    // border-bottom: 1px solid $grey-d;
+
+    .md-button {
+        min-width: 45px;
+    }
+
+    .md-primary {
+        background-color: $base !important;
+        color: $white;
+    }
+}
+
+
+.add-new-item {
+    position: absolute;
+    right: 2rem;
+    bottom: 1.6rem;
+}
+
+md-progress-circular.loading-image {
+    top: 5px;
+    left: 5px;
+}
+
+p.error {
+    width: 100%;
+    color: red;
+}
+
+.blade-gallery {
+    .blade-gallery-element {
+        width: 25%;
+        float: left;
+    }
+
+    a, img {
+        width: 100%;
+    }
+}
+
+
+.initial-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    z-index: 20000;
+}

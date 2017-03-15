@@ -1,0 +1,238 @@
+<!-- blade edit Projekte, Organisationen, Events -->
+
+<!-- blade edit files -->
+<form name="blade.editForm">
+<div class="blade blade--extended blade--files" blade-obj="blade" nv-file-drop uploader="blade.uploader">
+    <div class="blade-bar">
+        <md-content class="h-padding">
+            <div class="md-title">{{blade.sdrData.title}}</div>
+        </md-content>
+        <a class="close-btn" ng-click="blade.sdrMeta.remove()">
+            <i class="material-icons">close</i>
+        </a>
+    </div>
+    <div class="blade-container has-toolbar">
+        <md-content>
+            <div class="b-padding">
+                <h2 class="md-display-1">
+                    {{blade.sdrData.title}}
+                </h2>
+                <md-list class="md-list">
+
+                    <md-list-item class="md-2-line" ng-repeat="email in blade.sdrData.emails" class="md-2-line">
+
+                        <md-icon><i class="material-icons">&#xE158;</i></md-icon>
+                        <div class="md-list-item-text">
+                            <md-input-container>
+                                <label>{{'fields.email' | translate}}</label>
+                                <input ng-model="email.value" name="email_{{$index}}" ng-class="{'has-error' : blade.hasError('email_{{$index}}')}">
+                                <p ng-show="blade.hasError('no_valid_email_{{$index}}')" class="error">
+                                    {{'errors.email' | translate}}
+                                </p>
+                            </md-input-container>
+                        </div>
+
+                        <div class="md-list-item__delete" ng-click="blade.removeFromElements($index,blade.sdrData.emails)">
+                            <i class="material-icons">delete</i>
+                        </div>
+                    </md-list-item>
+
+                    <md-list-item class="md-2-line" ng-repeat="number in blade.sdrData.phoneNumbers" class="md-2-line">
+                        <md-icon><i class="material-icons">&#xE0CD;</i></md-icon>
+                        <div class="md-list-item-text">
+                            <md-input-container>
+                                <label>{{'fields.phone' | translate}}</label>
+                                <input ng-model="number.value" name="phone_{{$index}}" ng-class="{'has-error' : blade.hasError('phone_{{$index}}')}">
+                            </md-input-container>
+                        </div>
+
+                        <div class="md-list-item__delete" ng-click="blade.removeFromElements($index,blade.sdrData.phoneNumbers)">
+                            <i class="material-icons">delete</i>
+                        </div>
+                    </md-list-item>
+
+                    <md-list-item class="md-2-line" ng-repeat="address in blade.sdrData.addresses" class="md-2-line">
+                        <md-icon><i class="material-icons">&#xE55F;</i></md-icon>
+                        <div class="md-list-item-text">
+
+                            <md-input-container ng-repeat="addressLine in address.addressLines track by $index">
+                                <label>{{'fields.address' | translate}}</label>
+                                <input ng-model="address.addressLines[$index]">
+
+                                <div class="md-list-item__delete" ng-click="blade.removeFromElements($index,address.addressLines)" ng-if="address.addressLines.length > 1">
+                                    <i class="material-icons">delete</i>
+                                </div>
+
+                            </md-input-container>
+
+                            <!--<span ng-click="blade.addAddressLine(address.addressLines)">+</span>-->
+
+
+                            <md-input-container>
+                                <label>{{'fields.zip' | translate}}</label>
+                                <input ng-model="address.postalCode">
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>{{'fields.city' | translate}}</label>
+                                <input ng-model="address.locality">
+                            </md-input-container>
+
+
+                            <country-select ng-model="address.country"></country-select>
+
+                        </div>
+
+                        <div class="md-list-item__delete" ng-click="blade.removeFromElements($index,blade.sdrData.addresses)">
+                            <i class="material-icons">delete</i>
+                        </div>
+                    </md-list-item>
+
+                    <md-list-item class="md-2-line" ng-repeat="url in blade.sdrData.urls" class="md-2-line">
+                        <md-icon><i class="material-icons">&#xE157;</i></md-icon>
+                        <div class="md-list-item-text">
+                            <md-input-container>
+                                <label>{{'fields.link' | translate}}</label>
+                                <input ng-model="url.value" ng-blur="blade.updateUrl(url)" ng-class="{'has-error' : blade.hasError('url_{{$index}}')}">
+                            </md-input-container>
+                        </div>
+
+                        <div class="md-list-item__delete" ng-click="blade.removeFromElements($index,blade.sdrData.urls)">
+                            <i class="material-icons">delete</i>
+                        </div>
+                    </md-list-item>
+
+                    <!-- Files And Urls -->
+                    <md-list-item class="md-2-line" ng-repeat="element in blade.sdrData.filesAndUrls">
+
+                        <md-icon ng-if="element.type == 'url'"><i class="material-icons">&#xE89E;</i></md-icon>
+                        <md-icon ng-if="element.type == 'file'"><i class="material-icons">&#xE2C4;</i></md-icon>
+
+                        <div ng-if="element.type == 'url'" class="md-list-item-text" layout="column">
+                            <div layout="column" class="b-padding">
+                                <h3>{{'fields.link' | translate}}</h3>
+                            </div>
+                            <div layout="column" ng-form="element.form">
+                                <div flex="100">
+                                    <multilanguage-input sdr-model="element.name">
+                                        <md-input-container>
+                                            <label>{{'fields.name' | translate}}</label>
+                                            <input ng-model="$parent.multiLangContent" ng-class="{'has-error' : blade.hasError('urlName_{{$index}}')}">
+                                        </md-input-container>
+                                    </multilanguage-input>
+                                    <multilanguage-input sdr-model="element.description">
+                                        <md-input-container>
+                                            <label>{{'fields.description' | translate}}</label>
+                                            <input ng-model="$parent.multiLangContent">
+                                        </md-input-container>
+                                    </multilanguage-input>
+                                    <md-input-container>
+                                        <label>{{'fields.link' | translate}}</label>
+                                        <input ng-model="element.url" ng-trim="true" ng-blur="blade.updateUrl(element)" ng-class="{'has-error' : blade.hasError('url_{{$index}}')}">
+                                    </md-input-container>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div ng-if="element.type == 'file'" class="md-list-item-text" layout="column">
+
+                            <div layout="column" class="b-padding">
+                                <h3>{{'fields.file' | translate}}</h3>
+                            </div>
+                            <div layout="column" ng-form="element.form">
+
+                                <div flex="100">
+                                    <multilanguage-input sdr-model="element.name">
+                                        <md-input-container>
+                                            <label>{{'fields.name' | translate}}</label>
+                                            <input ng-model="$parent.multiLangContent" ng-class="{'has-error' : blade.hasError('fileName_{{$index}}')}">
+                                        </md-input-container>
+                                    </multilanguage-input>
+                                    <multilanguage-input sdr-model="element.description">
+                                        <md-input-container>
+                                            <label>{{'fields.description' | translate}}</label>
+                                            <input ng-model="$parent.multiLangContent">
+                                        </md-input-container>
+                                    </multilanguage-input>
+
+                                    <div ng-if="!element.url || element.url.length == 0" class="input-file-container" id="element_upload_{{$index}}">
+                                        <button type="file" ngf-select="blade.uploadFiles($file, $invalidFiles,$index)" ng-disabled="blade.disableButton(element)">
+                                            {{'fields.selectfile' | translate}}</button>
+                                    </div>
+                                    <div  ng-if="element.url || element.url.length > 0" class="file">
+                                        <a ng-href="{{element.url}}" class="block" target="_blank">
+                                           <!-- <h3>{{element.metadata.filename}}</h3> -->
+                                            <h3>{{element.name | sdrlang}}</h3>
+                                            <p>{{element.description | sdrlang}}</p>
+                                        </a>
+                                    </div>
+                                    <md-progress-linear ng-show="element.showUpload" md-mode="determinate" value="{{element.uploadPercentage}}"></md-progress-linear>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="md-list-item__delete" ng-click="blade.removeFromElements($index, blade.sdrData.filesAndUrls)">
+                            <i class="material-icons">delete</i>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+
+            <md-fab-speed-dial md-open="false" md-direction="right">
+                <!--
+                <md-fab-trigger>
+                    <md-button aria-label="menu" class="md-fab md-primary">
+                        <md-icon><i class="material-icons">&#xE145;</i></md-icon>
+                    </md-button>
+                </md-fab-trigger>
+                -->
+                <md-fab-actions ng-if="blade.isAddable('url')">
+                    <md-button ng-click="blade.addLink()" aria-label="Link hinzufügen" class="md-fab md-raised md-mini">
+                        <md-icon><i class="material-icons">&#xE157;</i></md-icon>
+                    </md-button>
+                </md-fab-actions>
+                <md-fab-actions ng-if="blade.isAddable('file')">
+                    <md-button ng-click="blade.addFile()" aria-label="Datei hinzufügen" class="md-fab md-raised md-mini">
+                        <md-icon><i class="material-icons">&#xE24D;</i></md-icon>
+                    </md-button>
+                </md-fab-actions>
+                <md-fab-actions ng-if="blade.isAddable('email') && blade.sdrData.emails.length < 3">
+                    <md-button ng-click="blade.addEMail()" aria-label="Email hinzufügen" class="md-fab md-raised md-mini">
+                        <md-icon><i class="material-icons">&#xE554;</i></md-icon>
+                    </md-button>
+                </md-fab-actions>
+                <md-fab-actions ng-if="blade.isAddable('phoneNumber') && blade.sdrData.phoneNumbers.length < 3">
+                    <md-button ng-click="blade.addPhonenumber()" aria-label="Telefon hinzufügen" class="md-fab md-raised md-mini">
+                        <md-icon><i class="material-icons">&#xE551;</i></md-icon>
+                    </md-button>
+                </md-fab-actions>
+                <md-fab-actions ng-if="blade.isAddable('address') && blade.sdrData.addresses.length < 3">
+                    <md-button ng-click="blade.addAddress()" aria-label="Adresse hinzufügen" class="md-fab md-raised md-mini">
+                        <md-icon><i class="material-icons">&#xE55F;</i></md-icon>
+                    </md-button>
+                </md-fab-actions>
+                <md-fab-actions ng-if="blade.isAddable('contactLink')">
+                    <md-button ng-click="blade.addContactLink()" aria-label="Adresse hinzufügen" class="md-fab md-raised md-mini">
+                        <md-icon><i class="material-icons">&#xE157;</i></md-icon>
+                    </md-button>
+                </md-fab-actions>
+            </md-fab-speed-dial>
+
+        </md-content>
+    </div>
+</div>
+
+
+<div class="toolbar">
+    <div class="close-btn--toolbar" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">arrow_back</i>
+    </div>
+
+    <md-button ng-disabled="blade.editForm.$pristine" ng-click="blade.save()" class="md-raised md-primary" aria-label="Save">
+        <md-icon><i class="material-icons">save</i></md-icon>
+    </md-button>
+    <md-button ng-click="blade.sdrMeta.remove()" class="md-raised md-primary" aria-label="Close">
+        <md-icon><i class="material-icons">close</i></md-icon>
+    </md-button>
+</div>
+</form>

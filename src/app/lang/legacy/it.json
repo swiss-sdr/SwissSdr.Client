@@ -1,0 +1,130 @@
+{
+
+    "title" : "Das Schweizerische Forschungsportal für Nachhaltige Entwicklung",
+    "subtitle": "Die Plattform vernetzt Wissen und verbindet Personen, Projekte, Veranstaltungen und Organisationen aus der Forschungswelt der nachhaltigen Entwicklung.",
+
+    "languages" : {
+    "german": "Deutsch",
+    "french": "Französisch",
+    "english": "Englisch"
+    },
+
+
+    "male":"HerrIT",
+    "female":"FrauIT",
+
+    "professor": "Professor",
+    "lecturer": "Lecturer",
+    "seniorscientist": "Senior Scientist",
+    "researchassociate": "Research Associate",
+    "seniorassistant": "Senior Assistant",
+    "postdoc": "Postdoc",
+    "phdstudent": "Ph. D. Student",
+    "employee": "Employee",
+    "undefined": "Other",
+
+
+    "welcomeBlurb":"swiss-sdr.ch brings together knowledge on sustainable development and connects people, projects, events, and organizations from the world of research for sustainable development.",
+    "loginTextUp":"swiss-sdr.ch è il centro di un network per coloro che fanno ricerca sullo sviluppo sostenibile - in Svizzera e al di fuori. L’utilizzo del sito è gratuito e rimarrà tale per le sue funzionalità di base. Per saperne di più sui vantaggi per i ricercatori cliccare su <a href='https://martin-schmied-cwja.squarespace.com'>“Chi siamo”</a>. Entra a far parte della comunità swiss-sdr: Accedi alla nuova swiss-sdr.ch app.",
+    "loginTextBottom":"Domande? Si prega di utilizzare il nostro modulo di contatto (link) o di contattarci via <a href='mailto:support@swiss-sdr.ch'>email</a>.",
+
+    "_comment" : "----------------------------------------------",
+    "_comment" : "START MENU",
+    "_comment" : "----------------------------------------------",
+
+    "topics": "Temi",
+    "projects": "Progetti",
+    "people": "Persone",
+    "organisations": "Organizza<br>zioni",
+    "events": "Eventi",
+
+
+    "_comment" : "----------------------------------------------",
+    "_comment" : "START PROJEKTE",
+    "_comment" : "----------------------------------------------",
+
+    "financingDescription" : "Finanzierung",
+    "investmentCategory" : "Budgetkategorie",
+    "under100K" : "<100'000",
+    "between100KAnd500K" : "100'000-500'000",
+    "between500KAnd1MM" : "500'000-1'000'000",
+    "between1MMAnd5MM" : "1'000'000-5'000'000",
+    "over5MM" : ">5'000'000",
+
+
+    "_comment" : "----------------------------------------------",
+    "_comment" : "END PROJEKTE",
+    "_comment" : "----------------------------------------------",
+
+
+
+
+    "_comment" : "----------------------------------------------",
+    "_comment" : "START ORGANISATION",
+    "_comment" : "----------------------------------------------",
+
+    "university": "Universität",
+    "independentResearchInstitute": "Forschungsinstitut (z.B. PSI, WSL)",
+    "company": "Unternehmen",
+    "association": "Verein / Verband / Gesellschaft",
+    "foundation": "Stiftung",
+    "publicSector": "Öffentliche Verwaltung - Bafu, ARE",
+    "NGO": "NRO",
+    "faculty":"Fakultät",
+    "researchTeam":"Departement / Institut / Zentrum / Forschungsgruppe",
+
+    "isic_A":"Agricoltura, silvicoltura e pesca",
+    "isic_B":"Attività estrattiva",
+    "isic_C":"Attività manifatturiere",
+    "isic_D":"Fornitura di energia elettrica, gas, vapore e aria condizionata",
+    "isic_E":"Fornitura di acqua; reti fognarie, attività di trattamento dei rifiuti e risanamento",
+    "isic_F":"Costruzioni",
+    "isic_G":"Commercio all’ingrosso e al dettaglio; riparazione di autoveicoli e motocicli",
+    "isic_H":"Trasporto e magazzinaggio",
+    "isic_I":"Servizi di alloggio e di ristorazione",
+    "isic_J":"Servizi di informazione e comunicazione",
+    "isic_K":"Attività finanziarie e assicurative",
+    "isic_L":"Attività immobiliari",
+    "isic_M":"Attività professionali, scientifiche e tecniche",
+    "isic_N":"Attività amministrative e di servizi di supporto",
+    "isic_O":"Amministrazione pubblica e difesa; assicurazione sociale obbligatoria",
+    "isic_P":"Istruzione",
+    "isic_Q":"Sanità e assistenza sociale",
+    "isic_R":"Attività artistiche, di intrattenimento e divertimento",
+    "isic_S":"Altre attività di servizi",
+    "isic_T":"Attività di famiglie e convivenze come datori di lavoro per personale domestico; produzione di beni e servizi indifferenziati per uso proprio da parte di famiglie e convivenze",
+    "isic_U":"Attività di organizzazioni e organismi extraterritoriali",
+
+
+
+    "_comment" : "----------------------------------------------",
+    "_comment" : "END ORGANISATION",
+    "_comment" : "----------------------------------------------",
+
+
+    "_comment" : "----------------------------------------------",
+    "_comment" : "START TOPICS",
+    "_comment" : "----------------------------------------------",
+
+    "UN_SDGS": "UN SDGS",
+    "UN_SDG": "UN SDG",
+    "UN_TOPICS": "UN Topics",
+    "UN_TOPIC": "UN Topic",
+    "UN_GOALS": "TOPICS",
+
+    "_comment" : "----------------------------------------------",
+    "_comment" : "END TOPICS",
+    "_comment" : "----------------------------------------------",
+
+    "_comment" : "----------------------------------------------",
+    "_comment" : "START PEOPLE",
+    "_comment" : "----------------------------------------------",
+
+    "Herr": "Herr",
+    "Frau": "Frau",
+
+    "_comment" : "----------------------------------------------",
+    "_comment" : "END PEOPLE",
+    "_comment" : "----------------------------------------------"
+
+}

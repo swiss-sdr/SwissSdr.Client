@@ -1,0 +1,28 @@
+/// <reference path="../../styles/_variables.scss" />
+
+
+.multilanguage-tabs {
+    padding-bottom: 1rem;
+
+    md-ink-bar {
+        display: none;
+    }
+
+    md-tabs-canvas,
+    md-pagination-wrapper {
+        height: 24px;
+    }
+
+    md-tabs-canvas {
+        margin-left: -.8rem;
+    }
+
+    md-tab-item {
+        padding: 0 1rem;
+        font-weight: 400;
+    }
+
+    md-tab-item.md-active {
+        font-weight: 600;
+    }
+}

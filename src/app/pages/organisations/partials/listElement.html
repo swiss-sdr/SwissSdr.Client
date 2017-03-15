@@ -1,0 +1,14 @@
+<div class="card__info card__info--primary" ng-click="blade.open(object)">
+    {{object.name | sdrlang}}
+</div>
+<div class="card__info card__info--description md-caption md-hue-2" ng-init="limit = 200">
+    {{object.description | sdrlang | limitTo : limit}}{{(object.description | sdrlang).length > limit ? '...' : ''}}
+</div>
+<div layout="row"  layout-align="space-between">
+    <div class="card__info card__info--secondary md-caption">
+    </div>
+    <div class="follow">
+        <i class="material-icons">star_rate</i>
+    </div>
+
+</div>

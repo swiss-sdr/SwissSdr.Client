@@ -1,0 +1,107 @@
+<!-- blade edit Projekte, Organisationen, Events -->
+
+<!-- blade edit files -->
+<form name="blade.editForm">
+<div class="blade blade--extended blade--files" blade-obj="blade" >
+    <div class="blade-bar">
+        <md-content class="h-padding">
+            <div class="md-title">{{blade.sdrData.title}}</div>
+        </md-content>
+        <a class="close-btn" ng-click="blade.sdrMeta.remove()">
+            <i class="material-icons">close</i>
+        </a>
+    </div>
+    <div class="blade-container has-toolbar">
+        <md-content>
+            <div class="b-padding">
+                <h2 class="md-display-1">
+                    {{blade.element.title}}
+                </h2>
+                <md-list class="md-list">
+
+
+                    <!-- Files And Urls -->
+                    <md-list-item class="md-2-line" ng-repeat="element in blade.sdrData.filesAndUrls">
+
+                        <md-icon><i class="material-icons">&#xE89E;</i></md-icon>
+
+                        <div class="md-list-item-text" layout="column">
+                            <div layout="column" class="b-padding">
+                                <h3>{{'fields.link' | translate}}</h3>
+                            </div>
+                            <div layout="column" ng-form="element.form">
+                                <div flex="100">
+                                    <multilanguage-input sdr-model="element.name">
+                                        <md-input-container>
+                                            <label>{{'fields.name' | translate}}</label>
+                                            <input ng-model="$parent.multiLangContent" ng-class="{'has-error' : blade.hasError('name_{{$index}}')}">
+                                        </md-input-container>
+                                    </multilanguage-input>
+                                    <multilanguage-input sdr-model="element.content" show-rich-text-tabs="true">
+                                        <text-angular ng-model="$parent.multiLangContent.data"
+                                                      ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'p', 'bold', 'underline', 'italics',  'indent', 'outdent', 'ul', 'ol','insertLink']]"
+                                                      ta-toolbar-button-class="">
+                                        </text-angular>
+                                    </multilanguage-input>
+                                    <p ng-show="blade.hasError('content_{{$index}}')" class="error">
+                                        {{'errors.description' | translate}}
+                                    </p>
+                                    <md-input-container>
+                                        <label>{{'fields.related' | translate}}</label>
+                                        <md-select ng-model="element.function" ng-class="{'has-error' : blade.hasError('function_{{$index}}')}">
+                                            <md-option ng-value="opt.name" ng-repeat="opt in blade.getOptions('person') track by $index">{{opt.name | translate}}</md-option>
+                                        </md-select>
+                                        <p ng-show="blade.hasError('function_{{$index}}')" class="error">
+                                            {{'errors.relationType' | translate}}
+                                        </p>
+                                    </md-input-container>
+                                    <md-input-container>
+                                        <label>{{'fields.link' | translate}}</label>
+                                        <input ng-model="element.url" ng-trim="true" ng-blur="blade.updateUrl(element)">
+                                    </md-input-container>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="md-list-item__delete" ng-click="blade.removeFromElements($index, blade.sdrData.filesAndUrls)">
+                            <i class="material-icons">delete</i>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+
+            <md-fab-speed-dial md-open="false" md-direction="right">
+                <!--
+                <md-fab-trigger>
+                    <md-button aria-label="menu" class="md-fab md-primary">
+                        <md-icon><i class="material-icons">&#xE145;</i></md-icon>
+                    </md-button>
+                </md-fab-trigger>
+                -->
+                <md-fab-actions ng-if="blade.isAddable('url')">
+                    <md-button ng-click="blade.addLink()" aria-label="Link hinzufügen" class="md-fab md-raised md-mini">
+                        <md-icon><i class="material-icons">&#xE157;</i></md-icon>
+                    </md-button>
+                </md-fab-actions>
+            </md-fab-speed-dial>
+
+        </md-content>
+    </div>
+</div>
+
+
+<div class="toolbar">
+    <div class="close-btn--toolbar" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">arrow_back</i>
+    </div>
+
+    <md-button ng-disabled="blade.editForm.$pristine" ng-click="blade.save()" class="md-raised md-primary" aria-label="Save">
+        <md-icon><i class="material-icons">save</i></md-icon>
+    </md-button>
+    <md-button ng-click="blade.sdrMeta.remove()" class="md-raised md-primary" aria-label="Close">
+        <md-icon><i class="material-icons">close</i></md-icon>
+    </md-button>
+</div>
+
+</form>

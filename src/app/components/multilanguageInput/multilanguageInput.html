@@ -1,0 +1,6 @@
+<md-tabs md-selected="currentEditLanguage" class="multilanguage-tabs" ng-show="showTabs || showRichTextTabs">
+    <md-tab ng-repeat="language in languages" md-on-select="setEditLanguage(language)">
+        <md-tab-label>{{'languages.' + language.name | translate}}</md-tab-label>
+    </md-tab>
+</md-tabs>
+<div class="multilanguage-input" ng-transclude></div>

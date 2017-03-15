@@ -1,0 +1,69 @@
+<div class="blade-container blade-container--overview">
+    <overview-header sdr-service="blade.sdrMeta.Service"
+                     sdr-parent="blade"></overview-header>
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout-align="space-between center">
+            <section ng-if="blade.isView('map')">
+                <!-- placeholder -->
+            </section>
+            <section ng-if="!blade.isView('map') && blade.entityType == 'event'">
+                <md-button ng-init="blade.sort('default')" ng-click="blade.sort('default')" class="md-primary" ng-class="{'active' : blade.isSort('default')}">{{'defaultDate' | translate}}</md-button>
+                <md-button ng-click="blade.sort('created')" ng-class="{'active' : blade.isSort('created')}">{{'newest' | translate}}</md-button>
+                <md-button ng-click="blade.sort('updated')" class="md-primary" ng-class="{'active' : blade.isSort('updated')}">{{'lastChanged' | translate}}</md-button>
+                <md-button ng-click="blade.sort('name')" class="md-primary" ng-class="{'active' : blade.isSort('name')}">{{'sortNameASC' | translate}}</md-button>
+            </section>
+            <section ng-if="!blade.isView('map') && blade.entityType == 'person'">
+                <md-button ng-init="blade.sort('created')"  ng-click="blade.sort('created')" ng-class="{'active' : blade.isSort('created')}">{{'newest' | translate}}</md-button>
+                <md-button ng-click="blade.sort('updated')" class="md-primary" ng-class="{'active' : blade.isSort('updated')}">{{'lastChanged' | translate}}</md-button>
+                <md-button ng-click="blade.sort('name')" class="md-primary" ng-class="{'active' : blade.isSort('name')}">{{'sortNameASC' | translate}}</md-button>
+            </section>
+            <section ng-if="!blade.isView('map') && blade.entityType == 'project'">
+                <md-button ng-init="blade.sort('created')"  ng-click="blade.sort('created')" ng-class="{'active' : blade.isSort('created')}">{{'newest' | translate}}</md-button>
+                <md-button ng-click="blade.sort('updated')" class="md-primary" ng-class="{'active' : blade.isSort('updated')}">{{'lastChanged' | translate}}</md-button>
+                <md-button ng-click="blade.sort('name')" class="md-primary" ng-class="{'active' : blade.isSort('name')}">{{'sortNameASC' | translate}}</md-button>
+            </section>
+            <section ng-if="!blade.isView('map') && blade.entityType == 'organisation'">
+                <md-button ng-init="blade.sort('updated')" ng-click="blade.sort('updated')" class="md-primary" ng-class="{'active' : blade.isSort('updated')}">{{'lastChanged' | translate}}</md-button>
+                <md-button ng-click="blade.sort('name')" class="md-primary" ng-class="{'active' : blade.isSort('name')}">{{'sortNameASC' | translate}}</md-button>
+            </section>
+            <section ng-if="!blade.isView('map') && blade.entityType == 'topic'">
+                <md-button ng-init="blade.sort('random')" ng-click="blade.sort('random')" ng-class="{'active' : blade.isSort('random')}">{{'UN_GOALS' | translate}}</md-button>
+                <md-button ng-click="blade.sort('unSdg')" ng-class="{'active' : blade.isSort('unSdg')}">{{'UN_SDGS' | translate}}</md-button>
+                <md-button ng-click="blade.sort('unTopic')" ng-class="{'active' : blade.isSort('unTopic')}">{{'UN_TOPICS' | translate}}</md-button>
+            </section>
+            <section class="md-toolbar__icons">
+                <md-button class="md-icon-button" ng-click="blade.setView('list')" ng-class="{'active' : blade.isView('list')}">
+                    <i class="material-icons">&#xE8EF;</i>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="blade.setView('grid')" ng-class="{'active' : blade.isView('grid')}">
+                    <i class="material-icons">&#xE8F0;</i>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="blade.setView('map')" ng-if="blade.showMap"  ng-class="{'active' : blade.isView('map')}">
+                    <i class="material-icons">&#xE55F;</i>
+                </md-button>
+            </section>
+        </div>
+    </md-toolbar>
+    <md-content layout="row" class="overview-content-container">
+        <div flex="30" class="filter-wrapper" ng-if="['person','events','organisation','project'].indexOf(blade.entityType) !== -1">
+            <filter></filter>
+        </div>
+        <div flex="{{['person','events','organisation','project'].indexOf(blade.entityType) !== -1 ? 70 : 100}}" class="overview-content">
+
+            <!-- cards gridview -->
+            <blade-overview-grid ng-if="blade.isView('grid')"></blade-overview-grid>
+
+            <!-- cards listview -->
+            <blade-overview-list ng-if="blade.isView('list')"></blade-overview-list>
+
+            <!-- map view -->
+            <blade-overview-map ng-if="blade.isView('map')" sdr-service="blade.sdrMeta.Service"></blade-overview-map>
+
+
+        </div>
+    </md-content>
+</div>
+
+<md-button ng-if="blade.canAdd" ng-click="blade.add()" class="md-fab add-new-item">
+    <md-icon><i class="material-icons">add</i></md-icon>
+</md-button>

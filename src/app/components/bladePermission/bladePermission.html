@@ -1,0 +1,88 @@
+<!-- blade edit Projekte, Organisationen, Events -->
+
+<!-- blade edit files -->
+<form name="blade.editForm">
+<div class="blade blade--extended" blade-obj="blade">
+    <div class="blade-bar">
+        <md-content class="h-padding">
+            <div class="md-title">{{'permissions' | translate}}</div>
+        </md-content>
+        <a class="close-btn" ng-click="blade.sdrMeta.remove()">
+            <i class="material-icons">close</i>
+        </a>
+    </div>
+    <div class="blade-container has-toolbar">
+        <md-content>
+
+            <div class="b-margin b-padding">
+                <h2 class="md-display-1">
+                    {{'permissions' | translate}}
+                </h2>
+            </div>
+
+            <md-button ng-show="!blade.adding" class="md-primary md-button md-ink-ripple b-margin" ng-click="blade.adding = true" >
+                {{'relatedaccount' | translate}}
+            </md-button>
+
+            <br />
+
+
+            <div ng-if="blade.adding" class="b-margin">
+
+                <user-search ng-model="blade.addThis"
+                                  sdr-type="['User']"
+                                  sdr-label="'Account' | translate"
+                                  sdr-noresult-start="'Kein Account mit '"
+                                  class="input-wrap">
+                </user-search>
+                <div flex="100">
+
+                    <md-button ng-click="blade.add(blade.addThis)" aria-label="menu" class="md-raised md-primary">
+                        {{'relatedaccounthint' | translate}}
+                    </md-button>
+                </div>
+            </div>
+
+
+            <br />
+
+
+            <div ng-repeat="item in blade.permissions._embedded.items">
+                <h3>{{item._embedded.user.fullname}}</h3>
+
+
+                <div ng-repeat="permission in blade.permissionTypes" ng-click="blade.refreshPermissions(item)">
+                    <md-checkbox ng-model="item.temp[permission]">
+                        {{ permission }}
+                    </md-checkbox>
+                </div>
+
+                <md-button ng-click="blade.removeFromElements($index)" aria-label="menu" class="md-raised md-warn">
+                    <md-icon>delete</md-icon>
+                    {{'relatedaccountdelete' | translate}}
+                </md-button>
+
+                <br /><br />
+
+            </div>
+
+        </md-content>
+
+    </div>
+</div>
+
+
+<div class="toolbar">
+    <div class="close-btn--toolbar" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">arrow_back</i>
+    </div>
+
+    <md-button ng-disabled="blade.disableSave" ng-click="blade.save()" class="md-raised md-primary" aria-label="Save">
+        <md-icon><i class="material-icons">save</i></md-icon>
+    </md-button>
+    <md-button ng-click="blade.sdrMeta.remove()" class="md-raised md-primary" aria-label="Close">
+        <md-icon><i class="material-icons">close</i></md-icon>
+    </md-button>
+
+</div>
+</form>

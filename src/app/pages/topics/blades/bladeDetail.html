@@ -1,0 +1,123 @@
+<div class="blade-bar">
+    <md-content class="h-padding">
+        <div class="md-title">{{blade.sdrData.name | sdrlang}} {{data}}</div>
+    </md-content>
+    <a class="close-btn" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">close</i>
+    </a>
+</div>
+
+<div class="blade-container has-toolbar">
+    <div class="detail-header">
+
+        <header ng-if="blade.sdrData._embedded.images.items.length > 0" layout="row" layout-align="left end" style="background-image:url('{{blade.sdrData._embedded.images.items[0].urls.large}}')">
+            <md-content layout="row" layout-align="left end" class="detail-header__content">
+                <div>
+                    <h1 class="md-display-1 white" ng-bind-html="blade.sdrData.name | sdrlang">
+                    </h1>
+                </div>
+                <h2></h2>
+            </md-content>
+            <!-- Follow Toggle -->
+        </header>
+
+        <header ng-if="!blade.sdrData._embedded.images.items" layout="row" layout-align="left end" style="background-image: url(/assets/images/bg-svg.svg)">
+            <md-content layout="row" layout-align="left end" class="detail-header__content">
+                <div>
+                    <h1 class="md-display-1 white" ng-bind-html="blade.sdrData.name | sdrlang">
+                    </h1>
+                </div>
+                <h2></h2>
+            </md-content>
+            <!-- Follow Toggle -->
+        </header>
+    </div>
+    <div layout="row" class="detail-content-container">
+        <md-content class="b-padding detail-content" flex="60">
+            <div class="h-padding">
+
+                <p ng-bind-html="blade.getDescription(blade.sdrData.description,blade.Config.getLanguage().code)">
+                </p>
+
+
+                <p ng-bind-html="blade.getDescription(blade.sdrData.content,blade.Config.getLanguage().code).data">
+                </p>
+
+            </div>
+
+            <div ng-if="blade.sdrData.unSdgIds.length > 0">
+                <h3 class="md-display-1">{{'UN_SDGS' | translate}}</h3>
+                <md-list-item class="md-2-line" ng-repeat="sdg in blade.sdrData.unSdgList track by $index">
+
+
+                    <div ng-if="sdg.image" style="background-image:url('{{sdg.image.url}}')" class="md-avatar"></div>
+                    <div ng-if="!sdg.image" style="background-image:url('/assets/images/bg-svg.svg')" class="md-avatar"></div>
+
+                    <div class="md-list-item-text">
+                        <h3>{{sdg.name | sdrlang}}</h3>
+                        <p>{{sdg.description | sdrlang}}</p>
+                    </div>
+
+                </md-list-item>
+            </div>
+
+            <br />
+
+            <div ng-if="blade.sdrData.tags.length > 0">
+                <h3 class="md-display-1">{{'fields.tags' | translate}}</h3>
+
+                <md-chips ng-model="blade.sdrData.tags" readonly="true">
+                    <md-chip ng-if="$chip">
+                        {{$chip}}
+                    </md-chip>
+                </md-chips>
+            </div>
+
+            <!--
+            <div>
+                <h3 ng-if="blade.sdrData._embedded.images.items.length > 0" class="md-display-1">{{'Images' | translate}}</h3>
+                <md-list-item ng-repeat="image in blade.sdrData._embedded.images.items" class="md-2-line">
+                    <div style="background-image:url('{{image.url}}')" class="md-avatar"></div>
+                </md-list-item>
+            </div>
+            -->
+
+        </md-content>
+    </div>
+
+    <!--<div layout="row" class="detail-content-container">
+        <md-content flex="100">
+            <div ng-if="blade.sdrData._embedded.images.items.length > 0">
+                <h3 class="md-display-1">{{'fields.images' | translate}}</h3>
+
+                <div class="blade-gallery">
+                    <div class="blade-gallery-element" ng-repeat="image in blade.sdrData._embedded.images.items">
+                        <a class="fancybox" rel="gallery1" ng-href="{{image.urls.large}}" title="{{image.name | sdrlang}}">
+                            <img ng-src="{{image.urls.thumbnail}}" alt="" />
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </md-content>
+    </div>-->
+
+</div>
+
+<div class="toolbar">
+    <div class="close-btn--toolbar" ng-click="blade.sdrData.remove()">
+        <i class="material-icons">arrow_back</i>
+    </div>
+
+    <!--<md-icon><i class="material-icons">share</i></md-icon>-->
+    <!--<md-icon><i class="material-icons">thumb_up</i></md-icon>-->
+
+    <span ng-repeat="permission in blade.sdrData.permissions">
+        <md-button ng-if="permission == 'fullControl'" ng-click="blade.openPermission()" class="md-raised md-primary" aria-label="Save" ng-disabled="blade.disableButton">
+            <md-icon><i class="material-icons">&#xE8D3;</i></md-icon>
+        </md-button>
+        <md-button ng-if="permission == 'editContent'" ng-click="blade.openEdit()" class="md-raised md-primary" aria-label="Delete">
+            <md-icon><i class="material-icons">edit</i></md-icon>
+        </md-button>
+    </span>
+</div>

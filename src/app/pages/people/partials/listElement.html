@@ -1,0 +1,22 @@
+<div class="card__info card__info--primary" ng-click="blade.open(object)">
+    {{object.firstname}} {{object.lastname }}
+</div>
+<div class="card__info card__info--description md-caption md-hue-2" ng-init="limit = 200">
+    <p class="people-list-title">{{object.title}}</p>
+    <p class="people-list-description">{{object.description | sdrlang | limitTo : limit}}{{(object.description | sdrlang).length > limit ? '...' : ''}}</p>
+    <p class="people-list-tags">
+        <span ng-repeat="tag in object.interestAreas">{{tag}}{{$last ? '' : ', '}}</span>
+    </p>
+    <p class="people-list-organisations">
+        <span ng-repeat="assosciated in object.associatedOrganisationNames">{{assosciated | sdrlang}}{{$last ? '' : ', '}}</span>
+    </p>
+</div>
+<div layout="row" layout-align="space-between">
+    <div>
+        <!-- todo tags -->
+    </div>
+    <div class="follow">
+        <i class="material-icons">star_rate</i>
+    </div>
+
+</div>

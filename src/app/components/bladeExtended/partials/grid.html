@@ -1,0 +1,21 @@
+<div class="cards cards--gridview"
+     layout="row"
+     flex
+     layout-align="space-between center"
+     layout-wrap>
+
+    <div class="card"
+         ng-repeat="object in bladeExtendedGrid.sdrObjects | limitTo: 6"
+         md-whiteframe="1">
+
+        <div class="card__image"
+             ng-click="blade.open(object)"
+             ng-include="'/app/pages/' + bladeExtendedGrid.typeByObject(object) + '/partials/overviewImage.html'">
+        </div>
+
+        <md-content ng-include="'/app/pages/' + bladeExtendedGrid.typeByObject(object) + '/partials/gridElement.html'">
+        </md-content>
+    </div>
+    <div class="card"></div>
+
+</div>

@@ -1,0 +1,34 @@
+<div class="cards cards--gridview"
+     layout="row"
+     layout-align="space-between center"
+     layout-wrap
+     infinite-scroll='blade.loadData()'
+     infinite-scroll-disabled='blade.loading || blade.allDataLoaded'
+     infinite-scroll-distance='1'
+     infinite-scroll-container='".blade-container--overview"'>
+
+    <div class="card"
+         ng-repeat="object in blade.objects track by $index">
+
+        <div class="card__image"
+             ng-click="blade.open(object)"
+             ng-include="'/app/pages/' + blade.typeByObject(object) + '/partials/overviewImage.html'">
+        </div>
+
+        <md-content ng-include="'/app/pages/' + blade.typeByObject(object) + '/partials/gridElement.html'">
+        </md-content>
+    </div>
+
+    <!-- spacer elements -->
+    <div class="card" ng-repeat-n="{{3 - (blade.objects.length % 3)}}">
+    </div>
+</div>
+
+
+<div ng-show="blade.loading" layout="row" layout-sm="column" layout-align="space-around">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<div ng-if="!blade.loading && blade.objects == 0" class="no-results">
+    Keine Einträge gefunden.
+</div>

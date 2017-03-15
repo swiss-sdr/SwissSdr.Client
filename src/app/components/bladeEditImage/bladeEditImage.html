@@ -1,0 +1,48 @@
+<!-- blade edit files -->
+<div class="blade blade--extended blade--files" blade-obj="blade" >
+    <div class="blade-bar">
+        <md-content class="h-padding">
+            <div class="md-title">{{blade.sdrData.title}}</div>
+        </md-content>
+        <a class="close-btn" ng-click="blade.sdrMeta.remove()">
+            <i class="material-icons">close</i>
+        </a>
+    </div>
+    <div class="blade-container has-toolbar">
+        <md-content>
+            <div class="b-padding">
+                <h2 class="md-display-1">
+                    Bild
+                </h2>
+                <div layout="row" layout-wrap>
+                    <div flex="100">
+                        <multilanguage-input sdr-model="blade.sdrData.object.name">
+                            <md-input-container>
+                                <label>Titel</label>
+                                <textarea ng-model="$parent.multiLangContent" name="name"></textarea>
+                            </md-input-container>
+                        </multilanguage-input>
+                    </div>
+                    <div flex="100">
+                        <multilanguage-input sdr-model="blade.sdrData.object.description" show-rich-text-tabs="true">
+                            <md-input-container>
+                                <label>{{'fields.description' | translate}}</label>
+                                <textarea name="description" ng-model="$parent.multiLangContent" md-maxlength="150" md-no-autogrow="true"></textarea>
+                            </md-input-container>
+                        </multilanguage-input>
+                    </div>
+                </div>
+            </div>
+        </md-content>
+    </div>
+</div>
+
+
+<div class="toolbar">
+    <div class="close-btn--toolbar" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">arrow_back</i>
+    </div>
+    <md-icon ng-click="blade.save()"><i class="material-icons">save</i></md-icon>
+    <md-icon ng-click="blade.sdrMeta.remove()"><i class="material-icons">close</i></md-icon>
+</div>
+

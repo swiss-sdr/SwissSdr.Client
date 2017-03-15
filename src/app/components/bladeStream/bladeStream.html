@@ -1,0 +1,152 @@
+<div class="blade-bar">
+    <md-content class="h-padding">
+        <div class="md-title">Stream</div>
+    </md-content>
+    <a class="close-btn" ng-click="blade.remove()">
+        <i class="material-icons">close</i>
+    </a>
+</div>
+<div class="blade-container">
+
+    <!-- if stream is empty -->
+    <md-content>
+
+        <h2 class="md-display-1">Ihr Stream ist Leer</h2>
+        <p>
+            Blindtexte nennt man Texte, die bei der Produktion von Publikationen oder Webseiten als Platzhalter für spätere Inhalte stehen, wenn der eigentliche Text noch nicht vorhanden ist. Sie werden auch als Dummy-, Füll- oder Platzhaltertexte bezeichnet.
+        </p>
+    </md-content>
+
+    <!-- stream -->
+    <div class="stream">
+        <md-content>
+
+            <div class="stream-container">
+                <div class="stream-item">
+                    <header class="stream-item__header" flex="100" layout="row" layout-align="start start">
+                        <div class="stream-item__image"
+                             style="background-image: url(https://swisssdr.blob.core.windows.net/images/files-190__Joerg_.jpg)"
+                             alt="{{object.name}}">
+
+                        </div>
+
+                        <md-content class="stream-item__content">
+                            <div class="card__info card__info--primary" flex layout="column">
+                                Markus Hintermeister hat Elia Burger‘s Projekt kommentiert
+                            </div>
+                            <div class="card__info card__info--secondary md-caption">
+                                Vor einer Stunde
+                            </div>
+                        </md-content>
+                    </header>
+
+
+                    <!-- [todo] card directive machen zusammen mit bladeOverview\list\list.html -->
+                    <div class="card" layout="row" md-whiteframe="1">
+
+                        <div class="card__image"
+                             flex="20"
+                             ng-click="blade.open(object)">
+
+                            <div class="card__image__pic" style="background-image:url('https://images.unsplash.com/photo-1464740042629-b78a46b310ae?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=3538168e9ca626c02a410cf8827f2c44')"></div>
+
+
+                        </div>
+
+                        <md-content flex="80"
+                                    layout="column"
+                                    layout-align="start none">
+
+
+
+                            <div class="card__info card__info--primary" ng-click="blade.open(object)">
+                                Digitale Nachhaltigkeit: Offener Zugang zu Wissen
+                            </div>
+                            <div class="card__info card__info--description md-caption md-hue-2">
+                                Wissen ist essentiell für eine nachhaltige Entwicklung und heute weitgehend digital.
+                            </div>
+                            <div layout="row" layout-align="space-between">
+                                <div class="card__info card__info--secondary md-caption">
+                                    Leben auf der Erde
+                                </div>
+                                <div class="follow">
+                                    <i class="material-icons">star_rate</i>
+                                </div>
+
+                            </div>
+
+                        </md-content>
+                    </div>
+
+
+
+                    <!-- if type comment -->
+                    <div class="stream-item__header" flex="100" layout="row" layout-align="start start">
+                        <div class="stream-item__image"
+                             style="background-image: url(https://swisssdr.blob.core.windows.net/images/files-190__Joerg_.jpg)"
+                             alt="{{object.name}}">
+
+                        </div>
+
+                        <md-content class="stream-item__content">
+                            <div class="card__info" flex layout="column">
+                                The Division's work provides analytical inputs for intergovernmental deliberations on sustainable development, including through its science-policy interface.
+                            </div>
+                            <div class="card__info card__info--secondary md-caption">
+                                Vor einer Stunde
+                            </div>
+                        </md-content>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <md-toolbar layout-align="start center">
+                <div class="md-toolbar-tools">
+
+                    <span flex></span>
+                    <md-button class="md-icon-button" aria-label="Share">
+                        <md-tooltip md-direction="top">
+                            Teilen
+                        </md-tooltip>
+                        <md-icon flex layout-align="center center">
+                            <i class="material-icons">&#xE80D;</i>
+                        </md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="Like">
+                        <md-tooltip md-direction="top">
+                            Like
+                        </md-tooltip>
+                        <md-icon flex layout-align="center center">
+                            <i class="material-icons">&#xE8DC;</i>
+                        </md-icon>
+                    </md-button>
+
+
+                    <md-menu md-position-mode="target-right target">
+                        <md-button class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu($event)">
+                            <md-tooltip md-direction="top">
+                                More
+                            </md-tooltip>
+                            <md-icon md-menu-origin layout-align="center center">
+                                <i class="material-icons">&#xE5D4;</i>
+                            </md-icon>
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item>
+                                <md-button ng-click="ctrl.announceClick($index)">
+                                    <md-icon>
+                                        <i class="material-icons">&#xE002;</i>
+                                    </md-icon>
+                                    Beitrag melden
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+            </md-toolbar>
+        </md-content>
+    </div>
+
+</div>

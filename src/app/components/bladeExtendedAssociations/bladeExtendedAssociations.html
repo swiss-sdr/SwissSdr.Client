@@ -1,0 +1,58 @@
+<!-- blade edit Projekte, Organisationen, Events -->
+<div class="blade blade--extended blade--related" blade-obj="blade">
+    <div class="blade-bar">
+        <md-content class="h-padding">
+            <div class="md-title">{{blade.sdrData.title}}</div>
+        </md-content>
+        <a class="close-btn" ng-click="blade.sdrMeta.remove()">
+            <i class="material-icons">close</i>
+        </a>
+    </div>
+    <div class="blade-container has-toolbar">
+        <md-content>
+            <div class="b-padding">
+                <h2 class="md-display-1">
+                    {{'fields.related' | translate}}
+                </h2>
+            </div>
+
+            <div layout="column">
+
+                <md-list class="md-list">
+                    <md-list-item class="md-2-line" ng-repeat="entry in blade.sdrData.associations track by $index"  ng-click="blade.openObjects(entry.target)">
+
+                        <div ng-if="entry.target._embedded.profileImage.url" style="background-image:url('{{entry.target._embedded.profileImage.url}}')" class="md-avatar"></div>
+                        <div ng-if="!entry.target._embedded.profileImage.url" style="background-image:url('/assets/images/bg-svg.svg')" class="md-avatar"></div>
+
+                        <div class="md-list-item-text" ng-if="entry.associationType == 'stub'">
+                            <h3>{{entry.target.name | sdrlang}}</h3>
+                            <p>{{entry.target.description | sdrlang}}</p>
+                            <p>{{entry.targetType | translate}}</p>
+                        </div>
+
+                        <div class="md-list-item-text" ng-if="entry.associationType == 'entity' && entry.targetType !== 'person'">
+                            <h3>{{entry.target.name | sdrlang}}</h3>
+                            <p>{{entry.target.description | sdrlang}}</p>
+                        </div>
+
+                        <div class="md-list-item-text" ng-if="entry.associationType == 'entity' && entry.targetType == 'person'">
+                            <h3>{{entry.target.firstname}} {{entry.target.lastname}}</h3>
+                        </div>
+
+                    </md-list-item>
+                </md-list>
+
+            </div>
+
+        </md-content>
+    </div>
+</div>
+
+
+<div class="toolbar">
+    <div class="close-btn--toolbar" ng-click="blade.sdrMeta.remove()">
+        <i class="material-icons">arrow_back</i>
+    </div>
+    <md-icon ng-click="blade.sdrMeta.remove()"><i class="material-icons">close</i></md-icon>
+
+</div>

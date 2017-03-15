@@ -1,0 +1,80 @@
+<!-- blade edit Projekte, Organisationen, Events -->
+
+<!-- blade edit files -->
+<form name="blade.editForm">
+    <div class="blade blade--extended blade--files" blade-obj="blade" >
+        <div class="blade-bar">
+            <md-content class="h-padding">
+                <div class="md-title">{{'fields.session' | translate}}</div>
+            </md-content>
+            <a class="close-btn" ng-click="blade.sdrMeta.remove()">
+                <i class="material-icons">close</i>
+            </a>
+        </div>
+        <div class="blade-container has-toolbar">
+            <md-content>
+                <div class="b-padding">
+
+                    <div layout="column" ng-form="element.form">
+                        <div flex="100">
+                            <multilanguage-input sdr-model="blade.sdrData.session.name">
+                                <md-input-container>
+                                    <label>{{'fields.name' | translate}}</label>
+                                    <input ng-model="$parent.multiLangContent" ng-class="{'has-error' : blade.hasError('name')}">
+                                </md-input-container>
+                            </multilanguage-input>
+                            <md-input-container>
+                                <label>{{'fields.venue' | translate}}</label>
+                                <input ng-model="blade.sdrData.session.venue">
+                            </md-input-container>
+                        </div>
+                        <div flex="100">
+                            <multilanguage-input sdr-model="blade.sdrData.session.content" show-rich-text-tabs="true">
+                                <text-angular ng-model="$parent.multiLangContent.data"
+                                              ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'p', 'bold', 'underline', 'italics',  'indent', 'outdent', 'ul', 'ol']]"
+                                              ta-toolbar-button-class="">
+
+                                </text-angular>
+                            </multilanguage-input>
+
+                            <p>Datum</p>
+
+                            <md-datepicker ng-model="blade.sdrData.session.beginDate" md-placeholder="Startdatum" md-hide-icons="triangle" ng-class="{'has-error' : blade.hasError('beginDate')}"></md-datepicker>
+
+                        </div>
+                        <div flex="50">
+                            <p>Startzeitpunkt</p>
+
+                            <md-input-container>
+                                <input ng-model="blade.sdrData.session.beginTime" type="text" ui-mask="99:99" ng-class="{'has-error' : blade.hasError('beginTime')}">
+                            </md-input-container>
+                        </div>
+                        <div flex="50">
+                            <p>Endzeitpunkt</p>
+
+                            <md-input-container>
+                                <input ng-model="blade.sdrData.session.endTime" type="text" ui-mask="99:99" ng-class="{'has-error' : blade.hasError('endTime')}">
+                            </md-input-container>
+
+                        </div>
+                    </div>
+                </div>
+            </md-content>
+        </div>
+    </div>
+
+
+    <div class="toolbar">
+        <div class="close-btn--toolbar" ng-click="blade.sdrMeta.remove()">
+            <i class="material-icons">arrow_back</i>
+        </div>
+
+        <md-button ng-disabled="blade.editForm.$pristine" ng-click="blade.save()" class="md-raised md-primary" aria-label="Save">
+            <md-icon><i class="material-icons">save</i></md-icon>
+        </md-button>
+        <md-button ng-click="blade.sdrMeta.remove()" class="md-raised md-primary" aria-label="Close">
+            <md-icon><i class="material-icons">close</i></md-icon>
+        </md-button>
+
+    </div>
+</form>

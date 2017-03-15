@@ -1,0 +1,17 @@
+<md-autocomplete md-no-cache="false"
+                 md-selected-item="location"
+                 md-selected-item-change="assocated.getObject(item)"
+                 ng-model-options="{debounce: 600}"
+                 md-search-text="assocated.searchText"
+                 md-items="item in assocated.search(assocated.searchText)"
+                 md-item-text="item.fullname"
+                 md-min-length="2"
+                 md-max-length="50"
+                 md-floating-label="{{assocated.sdrLabel | translate}}">
+    <md-item-template>
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.fullname}} ({{item.eMail}}) </span>
+    </md-item-template>
+    <md-not-found>
+        {{assocated.sdrNoresultStart}} "{{assocated.searchText}}" {{'notfound' | translate}}.
+    </md-not-found>
+</md-autocomplete>

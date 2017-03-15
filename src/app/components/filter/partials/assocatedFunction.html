@@ -1,0 +1,8 @@
+<md-input-container class="md-block">
+    <label translate="function"></label>
+    <md-select ng-model="assocatedFunction.ngModel" id="assoctedFunction">
+        <!--<md-option ng-value="{}">Keine Auswahl</md-option>-->
+        <md-option ng-value="opt" ng-repeat="opt in assocatedFunction.options">{{opt.name | translate}}</md-option>
+    </md-select>
+    <md-icon ng-click="assocatedFunction.ngModel = null">delete</md-icon>
+</md-input-container>

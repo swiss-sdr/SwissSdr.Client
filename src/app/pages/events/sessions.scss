@@ -1,0 +1,42 @@
+.timeline {
+    padding-left: 5rem;
+}
+.timeline ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.timeline-item {
+    position: relative;
+    border-left: 1px solid #999999;
+    padding: 1rem;
+}
+.timeline-item h3 {
+    position: relative;
+    margin: -0.5rem 0 0 0;
+}
+.timeline-item h3:before {
+    position: absolute;
+    left: -1.5rem;
+    top: 0.3rem;
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: black;
+}
+.datetime {
+    position: absolute;
+    width: 5rem;
+    left: -5rem;
+}
+
+.datetime-end {
+    position: absolute;
+    width: 5rem;
+    left: -4.9rem;
+    top: 1.6rem;
+
+    font-weight: 100;
+    font-size: 0.9rem;
+}

@@ -1,0 +1,19 @@
+<md-autocomplete md-no-cache="true"
+                 md-selected-item="assocated.selectedItem"
+                 md-selected-item-change="assocated.getObject(item)"
+                 ng-model-options="{debounce: 600}"
+                 md-search-text="assocated.searchText"
+                 md-items="item in assocated.search(assocated.searchText)"
+                 md-item-text="item.displayName"
+                 md-min-length="2"
+                 md-max-length="50"
+                 md-floating-label="{{assocated.sdrLabel}}">
+    <md-item-template>
+        <span md-highlight-text="searchText" md-highlight-flags="^i" ng-if="item.displayName">{{item.displayName}}</span>
+        <span md-highlight-text="searchText" md-highlight-flags="^i" ng-if="!item.displayName">{{item.name | sdrlang}}</span>
+    </md-item-template>
+    <md-not-found>
+        {{assocated.sdrNoresultStart}} "{{assocated.searchText}}" {{'notfound' | translate}}.
+    </md-not-found>
+</md-autocomplete>
+<!--<md-icon ng-click="assocated.reset()">delete</md-icon>-->

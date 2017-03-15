@@ -1,0 +1,78 @@
+/// <reference path="../../styles/_variables.scss" />
+
+
+.cards {
+    padding: 1rem 0;
+
+    md-content {
+        margin: 0;
+        background-color: $grey;
+        padding: 0.4rem 0.6rem;
+        overflow: hidden;
+    }
+}
+
+.card {
+        background-color: $grey;
+    margin-bottom: 2%;
+}
+
+.card__info {
+    margin: 0.2rem 0;
+}
+
+.card__info--primary {
+    font-weight: bold;
+}
+
+.card__info--description {
+    margin-bottom: 1rem;
+}
+
+
+.card__image__pic {
+    background-position: center;
+    background-size: cover;
+    min-height: 100%;
+
+    &:after {
+        content: "";
+        padding-bottom: 100%;
+        display: block;
+    }
+}
+
+
+
+// gridview
+.cards--gridview {
+    align-items: flex-start;
+
+    .card {
+        width: 32%;
+        overflow: hidden;
+    }
+}
+
+.blade--extended .cards--gridview {
+
+    .card {
+        width: 49%;
+    }
+}
+
+// listview
+.cards--listview {
+    .card {
+        min-height: 100px;
+    }
+
+    .card__info--description {
+        flex-grow: 1;
+    }
+
+    .card__image {
+        position: relative;
+        overflow: hidden;
+    }
+}

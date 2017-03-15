@@ -1,0 +1,112 @@
+<div class="filter" layout="column">
+    <div class="md-display-1">
+        {{'filter' | translate}}
+    </div>
+    <!--
+    <div class="input-wrap" ng-if="['project','event','person'].indexOf(filter.sdrType) !== -1">
+        <md-checkbox ng-repeat="language in filter.languages" ng-model="language.selected">{{language.name}}</md-checkbox>
+    </div>
+    -->
+
+    <!-- chips Forschungsgebiet -->
+    <div class="input-wrap" ng-if="['person','event','project','organisation'].indexOf(filter.sdrType) !== -1">
+        <md-chips ng-model="filter.selectedTags" md-autocomplete-snap="" md-transform-chip="filter.transformChip($chip)" md-require-match="true">
+            <md-autocomplete md-selected-item="filter.selectedTag"
+                             md-search-text="filter.searchTag"
+                             md-items="item in filter.tagList"
+                             md-item-text="item.name"
+                             md-floating-label="{{'fields.tags' | translate}}"
+                             class="md-block">
+                <span md-highlight-text="filter.searchTag">{{item.name}}</span>
+            </md-autocomplete>
+            <md-chip-template>
+                <span>
+                  <strong>{{$chip.name}}</strong>
+                </span>
+            </md-chip-template>
+        </md-chips>
+    </div>
+    <div class="input-wrap" ng-if="['project'].indexOf(filter.sdrType) !== -1">
+        <md-input-container>
+            <label>{{'fields.phase' | translate}}</label>
+            <md-select ng-model="filter.phase" multiple>
+                <md-option ng-value="status" ng-repeat="status in ['planned', 'active', 'finished']" style="text-transform: capitalize">{{status | translate}}</md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+
+    <div class="input-wrap" ng-if="['organisation'].indexOf(filter.sdrType) !== -1">
+        <md-input-container>
+            <label>{{'fields.type' | translate}}</label>
+            <md-select ng-model="filter.type">
+                <md-option ng-value="status" ng-repeat="status in ['company', 'association', 'foundation', 'university', 'publicSector', 'religiousOrganisation', 'independentResearchInstitute']" style="text-transform: capitalize">{{status | translate}}</md-option>
+            </md-select>
+            <md-icon ng-click="filter.type = null">delete</md-icon>
+        </md-input-container>
+    </div>
+
+    <md-checkbox ng-model="filter.jobs" aria-label="Jobs"  ng-if="['project','organisation'].indexOf(filter.sdrType) !== -1">
+        {{'fields.jobs' | translate}}
+    </md-checkbox>
+
+
+
+    <div class="input-wrap" ng-if="['project','event'].indexOf(filter.sdrType) !== -1">
+        <md-datepicker ng-model="filter.from" md-placeholder="{{'fields.startdate' | translate}}"></md-datepicker>
+    </div>
+
+    <div class="input-wrap" ng-if="['project','event'].indexOf(filter.sdrType) !== -1">
+        <md-datepicker ng-model="filter.until" md-placeholder="{{'fields.enddate' | translate}}"></md-datepicker>
+    </div>
+
+    <!--
+    <filter-assocated ng-model="filter.selectedAssocatedProject"
+                      sdr-type="['project']"
+                      sdr-label="'project' | translate"
+                      sdr-noresult-start="'withoutProject' | translate"
+                      class="input-wrap"
+                      ng-if="['project'].indexOf(filter.sdrType) !== -1">
+    </filter-assocated>
+-->
+
+    <filter-assocated ng-model="filter.selectedAssocatedOrganisation"
+                      sdr-type="['organisation']"
+                      sdr-label="'organisation' | translate"
+                      sdr-noresult-start="'withoutOrganisation' | translate"
+                      class="input-wrap"
+                      ng-if="['organisation'].indexOf(filter.sdrType) == -1">
+    </filter-assocated>
+
+    <!-- assocated function -->
+    <filter-assocated-function ng-model="filter.selectedAssocatedFunction"
+                               sdr-assocated="filter.selectedAssocatedProject"
+                               sdr-assocated-second="filter.selectedAssocatedOrganisation"
+                               class="input-wrap"
+                               ng-if="['person'].indexOf(filter.sdrType) !== -1">
+    </filter-assocated-function>
+
+
+    <!-- autocomplete Stadt / Land -->
+    <filter-place ng-model="filter.selectedPlace"
+                  class="input-wrap" ng-if="['organisation','event','person'].indexOf(filter.sdrType) !== -1">
+    </filter-place>
+
+    <!-- button Filter -->
+    <md-button ng-click="filter.execute()" class="md-raised md-primary filter-btn">
+        <md-icon class="name">
+            <i class="material-icons">&#xE152;</i>
+        </md-icon>
+        {{'leach' | translate}}
+    </md-button>
+
+    <!-- button Reset -->
+    <md-button ng-click="filter.reset()" class="md-primary ">
+        <md-icon class="name">
+            <i class="material-icons">&#xE8BA;</i>
+        </md-icon>
+        {{'reset' | translate}}
+    </md-button>
+
+</div>
+
+

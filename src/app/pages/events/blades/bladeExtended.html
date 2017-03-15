@@ -1,0 +1,53 @@
+<div class="blade-bar">
+    <md-content class="h-padding">
+        <div class="md-title">{{'relations' | translate}}</div>
+    </md-content>
+    <a class="close-btn" ng-click="blade.remove()">
+        <i class="material-icons">close</i>
+    </a>
+</div>
+<div class="blade-container has-toolbar">
+    <md-content>
+
+        <div ng-if="blade.objects.projects">
+            <h2 class="md-display-1">{{'projects' | translate}}</h2>
+
+            <blade-extended-grid sdr-objects="blade.objects.projects"></blade-extended-grid>
+
+            <md-button class="md-raised md-primary">
+                {{'showall' | translate}}
+            </md-button>
+        </div>
+
+        <div ng-if="blade.objects.people">
+            <h2 class="md-display-1">{{'people' | translate}}</h2>
+
+            <blade-extended-grid sdr-objects="blade.objects.people"></blade-extended-grid>
+
+            <md-button class="md-raised md-primary">
+                {{'showall' | translate}}
+            </md-button>
+        </div>
+
+        <div ng-if="blade.objects.events">
+            <h2 class="md-display-1">{{'events' | translate}}</h2>
+
+            <blade-extended-grid sdr-objects="blade.objects.events"></blade-extended-grid>
+
+            <md-button class="md-raised md-primary">
+                {{'showall' | translate}}
+            </md-button>
+        </div>
+
+        <div ng-if="blade.objects.organisations">
+
+            <h2 class="md-display-1">{{'organisations' | translate}}</h2>
+
+            <blade-extended-grid sdr-objects="blade.objects.organisations"></blade-extended-grid>
+
+            <md-button class="md-raised md-primary">
+                {{'showall' | translate}}
+            </md-button>
+        </div>
+    </md-content>
+</div>

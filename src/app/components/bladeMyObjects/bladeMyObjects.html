@@ -1,0 +1,87 @@
+<md-toolbar>
+    <div class="md-toolbar-tools" layout-align="space-between center">
+        <section>
+            <md-button ui-sref="main.blades({type: 'myobjects', id: ''})" class="md-primary active">{{'objects' | translate}}</md-button>
+            <md-button ui-sref="main.blades({type: 'account', id: ''})" class="md-primary">{{'account' | translate}}</md-button>
+            <md-button ui-sref="main.blades({type: 'permissions', id: ''})" class="md-primary" ng-if="blade.$rootScope.isAdmin">{{'permissions' | translate}}</md-button>
+            <!--<md-button  class="md-primary">{{'Kommentare' | translate}}</md-button>-->
+        </section>
+    </div>
+</md-toolbar>
+<md-content layout="column" class="overview-content-container">
+    <h2>{{'myobjects' | translate}}</h2>
+    <!--<div class="md-display-1">
+        Filter
+    </div>-->
+
+
+    <!-- search -->
+    <!--<div layout="row" class="b-padding" layout-align="start end">
+        <div flex="100">
+            <md-input-container>
+                <label>Suche</label>
+                <input>
+            </md-input-container>
+        </div>
+    </div>-->
+
+    <!-- search results -->
+    <div layout="column">
+        <div layout="row" class="b-padding">
+            <div class="md-title" flex="60">{{'fields.titleOrName' | translate}}</div>
+            <div flex="5"></div>
+            <div class="md-title" flex="15">{{'fields.type' | translate}}</div>
+            <div class="md-title" flex="20"></div>
+        </div>
+
+
+        <div layout="row" ng-if="blade.permissions.items.length <= 0">
+            {{'noentries' | translate}}
+        </div>
+
+        <div layout="row"  ng-repeat="i in blade.permissions.items" class="md-list-selectable">
+            <div flex="60">
+                <md-list>
+                    <md-list-item class="md-2-line">
+                        <div ng-if="i._embedded.user._embedded.profileImage" style="background-image:url({{ i._embedded.user._embedded.profileImage.url }})" class="md-avatar"></div>
+                        <div ng-if="i._embedded.user.image" style="background-image:url({{ i._embedded.user.image }})" class="md-avatar"></div>
+                        <div class="md-list-item-text" layout="column">
+                            <h3 ng-if="i._embedded.user.name">{{ i._embedded.user.name | sdrlang }}</h3>
+                            <h3 ng-if="i._embedded.user.firstname">{{ i._embedded.user.firstname }} {{ i.data.lastname }}</h3>
+                            <p ng-if="i._embedded.user.description">{{ i._embedded.user.description | sdrlang }}</p>
+                            <p ng-if="i._embedded.user.title">{{ i._embedded.user.title }}</p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+            <div flex="5"></div>
+            <div flex="15" layout="row" layout-align="start center">{{ i.type }}</div>
+            <div flex="20" layout="row" layout-align="end center">
+                <md-button class="md-icon-button" ng-click="blade.openEdit(i,$index)">
+                    <md-tooltip md-direction="top">
+                        {{'edit' || translate}}
+                    </md-tooltip>
+                    <md-icon flex layout-align="center center">
+                        <i class="material-icons">&#xE3C9;</i>
+                    </md-icon>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="blade.delete(i._embedded.user,$index)">
+                    <md-tooltip md-direction="top">
+                        {{'delete' || translate}}
+                    </md-tooltip>
+                    <md-icon flex layout-align="center center">
+                        <i class="material-icons">delete</i>
+                    </md-icon>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="blade.openPermissions(i,$index)">
+                    <md-tooltip md-direction="top">
+                        {{'account' || translate}}
+                    </md-tooltip>
+                    <md-icon flex layout-align="center center">
+                        <i class="material-icons">&#xE8D3;</i>
+                    </md-icon>
+                </md-button>
+            </div>
+        </div>
+    </div>
+</md-content>

@@ -1,0 +1,19 @@
+<md-autocomplete md-no-cache="false"
+                 md-selected-item="location"
+                 md-selected-item-change="place.getPlace(item)"
+                 ng-model-options="{debounce: 600}"
+                 md-search-text-change="place.search(place.searchText)"
+                 md-search-text="place.searchText"
+                 md-items="item in place.search(place.searchText)"
+                 md-item-text="item.description"
+                 md-min-length="2"
+                 md-max-length="50"
+                 placeholder="Type your address"
+                 md-floating-label="{{'places' | translate}}">
+    <md-item-template>
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.description}}</span>
+    </md-item-template>
+    <md-not-found>
+        {{'errors.city' | translate}}
+    </md-not-found>
+</md-autocomplete>

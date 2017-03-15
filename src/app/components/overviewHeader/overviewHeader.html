@@ -1,0 +1,60 @@
+<header layout-align="center center" layout="row">
+
+    <div class="container">
+
+        <!-- if home -->
+        <div class="container__description">
+            <h1 class="md-headline">{{ 'title' | translate }}</h1>
+            {{ 'subtitle' | translate }}
+
+        </div>
+
+        <div class="container__inputs" flex="100" layout="row" layout-align="center center">
+            <div class="input-wrapper" flex="100">
+                <!-- search input-->
+                <form ng-submit="$event.preventDefault()" name="assocated.form">
+                    <md-autocomplete md-no-cache="false"
+                                     md-selected-item="location"
+                                     md-selected-item-change="assocated.getObject(item)"
+                                     ng-model-options="{debounce: 600}"
+                                     md-search-text-change="assocated.search(searchText)"
+                                     md-search-text="searchText"
+                                     md-items="item in assocated.search(searchText)"
+                                     md-item-text="item.name | sdrlang"
+                                     md-min-length="2"
+                                     md-max-length="50"
+                                     placeholder="{{(angular.isUndefined(assocated.sdrType) ? 'searchAllObjects' : 'searchIn' + assocated.sdrType) | translate}}">
+                        <md-item-template>
+                            <span md-highlight-text="searchText" md-highlight-flags="^i" ng-if="item.displayName">{{item.displayName}}</span>
+                            <span md-highlight-text="searchText" md-highlight-flags="^i" ng-if="!item.displayName">{{item.name | sdrlang}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            {{assocated.sdrNoresultStart}} "{{searchText}}" {{"notFound" | translate}}.
+                        </md-not-found>
+                    </md-autocomplete>
+                </form>
+            </div>
+
+            <div flex></div>
+            <div ng-if="!assocated.me" class="input-wrapper" flex="100">
+
+
+                <md-button ng-click="assocated.login()" class="md-raised md-primary block align-left">
+                    <md-icon class="name">
+                        <i class="material-icons">&#xE7FD;</i>
+                    </md-icon>
+                    {{assocated.me}} {{'login' | translate}}
+                </md-button>
+
+
+            </div>
+        </div>
+    </div>
+
+</header>
+
+
+
+
+
+
