@@ -150,10 +150,12 @@
 
                         <div class="md-list-item-text" ng-if="entry.associationType == 'entity' && entry.targetType !== 'person'">
                             <h3>{{entry.target.name | sdrlang}}</h3>
+                            <p>{{entry.associationDescription | translate}}</p>
                         </div>
 
                         <div class="md-list-item-text" ng-if="entry.associationType == 'entity' && entry.targetType == 'person'">
                             <h3>{{entry.target.firstname}} {{entry.target.lastname}}</h3>
+                            <p>{{entry.associationDescription | translate}}</p>
                         </div>
                     </md-list-item>
 
