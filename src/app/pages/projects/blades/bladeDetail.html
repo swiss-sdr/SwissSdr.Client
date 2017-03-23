@@ -28,14 +28,23 @@
         <md-content class="b-padding detail-content" flex="60">
             <div class="h-padding">
 
+                <h2 ng-if="blade.getDescription(blade.sdrData.description,blade.Config.getLanguage().code)" class="md-display-1">{{'detailTitle.description' | translate}}</h2>
                 <p ng-bind-html="blade.getDescription(blade.sdrData.description,blade.Config.getLanguage().code)">
                 </p>
 
+                <br />
+
+                <h2 ng-if="blade.getDescription(blade.sdrData.laySummary,blade.Config.getLanguage().code)" class="md-display-1">{{'detailTitle.laySummary' | translate}}</h2>
                 <p ng-bind-html="blade.getDescription(blade.sdrData.laySummary,blade.Config.getLanguage().code)">
                 </p>
 
+                <br />
+
+                <h2 ng-if="blade.getDescription(blade.sdrData.abstract,blade.Config.getLanguage().code)" class="md-display-1">{{'detailTitle.abstract' | translate}}</h2>
                 <p ng-bind-html="blade.getDescription(blade.sdrData.abstract,blade.Config.getLanguage().code)">
                 </p>
+
+                <br />
 
                 <p ng-bind-html="blade.getContent(blade.sdrData.content.basic,blade.Config.getLanguage().code)">
                 </p>

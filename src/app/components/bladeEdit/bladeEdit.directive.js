@@ -692,7 +692,10 @@ class BladeEditController {
     }
 
     removeFromElements(index,obj) {
+        var self = this;
         var entry = obj.splice(index, 1)[0];
+        self.disableSave = false;
+        self.editForm.$pristine = false;
         //this.sdrMeta.Service.delete(entry);
     }
 
