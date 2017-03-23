@@ -145,7 +145,7 @@ class BladeDetailController {
             self.sdrData.unTopicList = [];
             self.unTopicObjects = [];
 
-            self.$http.get(self.Config.apiHost + "topics",{params:{Type : "unTopics"}}).then(function(data){
+            self.$http.get(self.Config.apiHost + "topics",{params:{Type : "unTopics" , take: 1000}}).then(function(data){
                 self.unTopicObjects = data.data._embedded.items;
                 angular.forEach(self.sdrData.unTopicIds , function(value,key){
 
