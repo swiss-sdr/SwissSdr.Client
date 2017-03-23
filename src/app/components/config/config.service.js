@@ -20,9 +20,15 @@ export class ConfigService {
         }
 
         this.fallbackLanguage = {
+            name: "Deutsch",
+            code: "de"
+        };
+        /*
+        this.fallbackLanguage = {
             name: "iv (dev)",
             code: "iv"
         };
+        */
 
         // swisssdr-api-dev.azurewebsites.net i
 
@@ -113,11 +119,14 @@ export class ConfigService {
             {
                 name: self.$filter('translate')('english'),
                 code: 'en'
-            },
+            }
+            /*
+            ,
             {
                 name: 'iv (dev)',
                 code: 'iv'
             }
+            */
         ];
     }
 
