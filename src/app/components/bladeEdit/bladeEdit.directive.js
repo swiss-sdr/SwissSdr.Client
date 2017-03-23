@@ -740,6 +740,7 @@ class BladeEditController {
         var self = this;
 
         if (!item) {
+            self.sdrData.parentProjectId = null;
             return;
         }
 
