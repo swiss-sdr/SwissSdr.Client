@@ -48,6 +48,10 @@ IF NOT DEFINED KUDU_SYNC_CMD (
   SET KUDU_SYNC_CMD=%appdata%\npm\kuduSync.cmd
 )
 
+:: Install Yarn
+echo Verifying Yarn Install.
+call :ExecuteCmd npm install yarn -g
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :: Deployment
 :: ----------
@@ -58,9 +62,9 @@ echo %DEPLOYMENT_TARGET%
 
 :: 3. Install packages
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
-    echo Installing npm packages
+    echo Installing Yarn packages
     pushd "%DEPLOYMENT_SOURCE%"
-    call :ExecuteCmd npm install
+    call :ExecuteCmd yarn install
     IF !ERRORLEVEL! NEQ 0 goto error
     popd
 )
@@ -76,7 +80,7 @@ IF EXIST "%DEPLOYMENT_SOURCE%\bower.json" (
 IF EXIST "%DEPLOYMENT_SOURCE%\gulpfile.js" (
     echo Executing gulp build
     pushd "%DEPLOYMENT_SOURCE%"
-    call :ExecuteCmd gulp build
+    call :ExecuteCmd gulp build --env=%ASPNETCORE_ENVIRONMENT%
     IF !ERRORLEVEL! NEQ 0 goto error
     popd
 )

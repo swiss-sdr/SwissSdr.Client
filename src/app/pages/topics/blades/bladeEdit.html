@@ -12,34 +12,38 @@
 <div class="blade-container has-toolbar">
     <md-content>
         <div layout="column" class="b-padding">
-            <div flex="100" layout="column">
+            <div>
                 <h2 class="md-display-1">
                     {{'fields.information' | translate}}
                 </h2>
-                <div layout="row" layout-wrap>
-                    <div flex="100">
-                        <multilanguage-input sdr-model="blade.sdrData.name">
+                <div>
+                    <div class="flex layout-row">
+                        <div flex="50">
+                            <multilanguage-input sdr-model="blade.sdrData.name">
+                                <md-input-container>
+                                    <label>{{'fields.name' | translate}}</label>
+                                    <input ng-model="$parent.multiLangContent" name="name" ng-class="{'has-error' : blade.hasError('name')}">
+                                </md-input-container>
+                            </multilanguage-input>
+                        </div>
+                        <div flex="50">
                             <md-input-container>
-                                <label>{{'fields.name' | translate}}</label>
-                                <input ng-model="$parent.multiLangContent" name="name" ng-class="{'has-error' : blade.hasError('name')}">
+                                <label>{{'fields.type' | translate}}</label>
+                                <md-select ng-model="blade.sdrData.type">
+                                    <md-option ng-value="typ" ng-repeat="typ in ['normal','unTopic','unSDG']">{{typ | translate}}</md-option>
+                                </md-select>
                             </md-input-container>
-                        </multilanguage-input>
+                        </div>
                     </div>
-                    <div flex="100">
-                        <multilanguage-input sdr-model="blade.sdrData.description">
-                            <md-input-container>
-                                <label>{{'fields.description' | translate}}</label>
-                                <textarea ng-model="$parent.multiLangContent"></textarea>
-                            </md-input-container>
-                        </multilanguage-input>
-                    </div>
-                    <div flex="100">
-                        <md-input-container>
-                            <label>{{'fields.type' | translate}}</label>
-                            <md-select ng-model="blade.sdrData.type">
-                                <md-option ng-value="typ" ng-repeat="typ in ['normal','unTopic','unSDG']">{{typ | translate}}</md-option>
-                            </md-select>
-                        </md-input-container>
+                    <div class="flex layout-row">
+                        <div flex="100">
+                            <multilanguage-input sdr-model="blade.sdrData.description">
+                                <md-input-container>
+                                    <label>{{'fields.description' | translate}}</label>
+                                    <textarea ng-model="$parent.multiLangContent"></textarea>
+                                </md-input-container>
+                            </multilanguage-input>
+                        </div>
                     </div>
                 </div>
             </div>

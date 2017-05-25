@@ -52,12 +52,20 @@ export class BladesService {
 
         blade.meta.firstOfType = true;
 
+
+
         for(var i=0;i<self.editBladesTypes.length;i++){
             var tmpBlade = self.editBladesTypes[i];
 
             // Check if the type is equal
             if(tmpBlade.type === blade.meta.type){
                 blade.meta.firstOfType = false;
+            }
+
+            if(tmpBlade.type.indexOf('edit-') !== -1){
+                if(tmpBlade.tmpId === blade.meta.type + "_" + blade.data.owner.id){
+                    bladeExists = true;
+                }
             }
 
         }
@@ -187,6 +195,10 @@ export class BladesService {
             var bladeObj = {};
             bladeObj._bladeId = blade._bladeId;
             bladeObj.type = blade.meta.type;
+
+            if(blade.meta.type.indexOf('edit-') !== -1){
+                bladeObj.tmpId = blade.meta.type + "_" + blade.data.owner.id;
+            }
 
             self.editBladesTypes.push(bladeObj);
 

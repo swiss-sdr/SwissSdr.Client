@@ -144,7 +144,7 @@ export class ProjectsService {
     }
 
     prepareObjForEdit(blade) {
-        blade.sdrData.contentBasic = this.getDefaultContent(blade.sdrData.content.basic);
+        blade.sdrData.content.basic = this.getDefaultContent(blade.sdrData.content.basic);
     }
 
     prepareObjForDetail(blade){

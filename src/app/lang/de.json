@@ -82,6 +82,12 @@
         "programm": "Programm"
     },
 
+    "detailTitle": {
+        "description": "Beschreibung",
+        "laySummary": "Lay Summary",
+        "abstract": "Abstract"
+    },
+
     "menu": {
         "topics": "Themen",
         "projects": "Projekte",

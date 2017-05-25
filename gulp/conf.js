@@ -8,6 +8,10 @@
 
 var gutil = require('gulp-util');
 
+function useCdn() {
+  return gutil.env.env.toLowerCase() != 'development' && gutil.env.env.toLowerCase() != 'staging';
+}
+
 /**
  *  The main paths of your project handle these with care
  */
@@ -16,7 +20,7 @@ exports.paths = {
     dist: 'dist',
     tmp: '.tmp',
     e2e: 'e2e',
-    cdn: '//swisssdr-cdn.azureedge.net'
+    cdn: useCdn() ? '//swisssdr-cdn.azureedge.net' : ''
 };
 
 /**

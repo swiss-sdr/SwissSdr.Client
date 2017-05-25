@@ -27,10 +27,10 @@
                         </multilanguage-input>
                     </div>
                     <div flex="100">
-                        <multilanguage-input sdr-model="blade.sdrData.abstract">
+                        <multilanguage-input sdr-model="blade.sdrData.description">
                             <md-input-container>
-                                <label>{{'fields.abstract' | translate}}</label>
-                                <textarea ng-model="$parent.multiLangContent"></textarea>
+                                <label>{{'fields.description' | translate}}</label>
+                                <textarea ng-model="$parent.multiLangContent" name="description" ng-class="{'has-error' : blade.hasError('description')}"></textarea>
                             </md-input-container>
                         </multilanguage-input>
                     </div>
@@ -43,10 +43,10 @@
                         </multilanguage-input>
                     </div>
                     <div flex="100">
-                        <multilanguage-input sdr-model="blade.sdrData.description">
+                        <multilanguage-input sdr-model="blade.sdrData.abstract">
                             <md-input-container>
-                                <label>{{'fields.description' | translate}}</label>
-                                <textarea ng-model="$parent.multiLangContent" name="description" ng-class="{'has-error' : blade.hasError('description')}"></textarea>
+                                <label>{{'fields.abstract' | translate}}</label>
+                                <textarea ng-model="$parent.multiLangContent"></textarea>
                             </md-input-container>
                         </multilanguage-input>
                     </div>
@@ -211,7 +211,7 @@
                             <p>{{pproject.description | sdrlang}}</p>
                         </div>
 
-                        <div class="md-list-item__delete" ng-click="blade.removeFromElements($index, blade.sdrData.partnerProjects)">
+                        <div class="md-list-item__delete" ng-click="blade.removeFromElements($index, blade.sdrData._embedded.partnerProjects)">
                             <i class="material-icons">delete</i>
                         </div>
 
