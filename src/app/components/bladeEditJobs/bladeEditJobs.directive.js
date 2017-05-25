@@ -73,6 +73,7 @@ class BladeEditJobsController {
 
     removeFromElements(index,obj) {
         var entry = obj.splice(index, 1)[0];
+        this.editForm.$pristine = false;
         //this.Service.delete(entry);
     }
 
