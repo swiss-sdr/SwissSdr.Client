@@ -7,6 +7,9 @@ export class OrganisationsService {
         this.SdrService = SdrService;
         this.bladeType = "organisations";
         this.Files = Files;
+
+        //this.diff = require('deep-diff').diff;
+
     }
 
     getOverview(params = {}) {
@@ -144,8 +147,10 @@ export class OrganisationsService {
     checkOnClose(originObj,fallBack){
 
         delete originObj.fallBack;
-        delete originObj.rootOrganisation;
+        //delete originObj.rootOrganisation;
         delete fallBack.fallBack;
+
+        //console.log(this.diff(originObj,fallBack));
 
         return angular.equals(originObj,fallBack);
     }
