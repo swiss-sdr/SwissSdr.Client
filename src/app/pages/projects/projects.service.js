@@ -7,6 +7,8 @@ export class ProjectsService {
         this.SdrService = SdrService;
         this.bladeType = "projects";
         this.Files = Files;
+
+        //this.diff = require('deep-diff').diff;
     }
 
     getUrl() {
@@ -223,6 +225,13 @@ export class ProjectsService {
         angular.forEach(originObj.disciplines, function(disc){
             delete disc.$$mdSelectId;
             delete disc.active;
+            delete disc.$$hashKey;
+        });
+
+        angular.forEach(fallBack.disciplines, function(disc){
+            delete disc.$$mdSelectId;
+            delete disc.name;
+            delete disc.subgroup;
         });
 
         //var deep = DeepDiff.noConflict();
@@ -230,6 +239,7 @@ export class ProjectsService {
 
         //console.warn(deep.diff(originObj, fallBack));
 
+        //console.log(this.diff(originObj,fallBack));
 
         return angular.equals(originObj,fallBack);
     }
