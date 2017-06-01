@@ -368,3 +368,9 @@ p.people-list-title {
 .ta-editor {
     min-width: 100%;
 }
+
+md-backdrop.md-menu-backdrop {
+        position: fixed;
+        z-index: 9999 !important;
+}
+
