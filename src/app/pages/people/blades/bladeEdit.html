@@ -229,12 +229,13 @@
                         </div>
 
                         <div class="md-list-item-text" ng-if="associated.associationType == 'entity' && associated.targetType !== 'person'">
-                            <h3>{{associated.target.name | sdrlang}}</h3>
+                            <h3>{{associated.target.name | sdrlang}} | {{associated.associationDescription | translate}}</h3>
                             <p>{{associated.target.description | sdrlang}}</p>
                         </div>
 
                         <div class="md-list-item-text" ng-if="associated.associationType == 'entity' && associated.targetType == 'person'">
                             <h3>{{associated.target.firstname}} {{associated.target.lastname}}</h3>
+                            <p>{{associated.associationDescription | translate}}</p>
                         </div>
 
                     </md-list-item>

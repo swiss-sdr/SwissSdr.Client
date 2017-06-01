@@ -740,7 +740,9 @@ class BladeEditController {
         var self = this;
 
         if (!item) {
-            self.sdrData.parentProjectId = null;
+            self.sdrData.parentProjectId = null
+            self.sdrData._embedded.parentProject = null;
+            self.editForm.$pristine = false;
             return;
         }
 

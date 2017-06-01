@@ -61,6 +61,7 @@
         "file": "File",
         "venue": "Venue",
         "zip": "Postal code",
+        "country": "Country",
         "city": "City",
         "start": "Start",
         "end": "End",

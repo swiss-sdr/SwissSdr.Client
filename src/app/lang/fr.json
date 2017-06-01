@@ -60,6 +60,7 @@
         "file": "Fichier",
         "venue": "Venue",
         "zip": "Code postal",
+        "country": "FR: Land",
         "city": "Ville",
         "start": "Début",
         "end": "Fin",
@@ -78,7 +79,7 @@
         "textsExtended": "Prolongé",
         "investmentAmount": "Budget",
         "disciplines": "Disciplines",
-        "programm": "Programme",
+        "programm": "Programme".
         "provider": "Prodiver(s)"
     },
 
