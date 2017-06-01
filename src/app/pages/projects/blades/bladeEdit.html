@@ -171,6 +171,24 @@
                 </md-autocomplete>
             </div>
 
+            <div flex="100" ng-if="blade.sdrData.parentProjectId">
+                <md-list-item class="md-2-line">
+
+                    <div ng-if="blade.sdrData._embedded.parentProject.image" style="background-image:url('{{blade.sdrData._embedded.parentProject.image.url}}')" class="md-avatar"></div>
+                    <div ng-if="!blade.sdrData._embedded.parentProject.image" style="background-image:url('/assets/images/bg-svg.svg')" class="md-avatar"></div>
+
+                    <div class="md-list-item-text">
+                        <h3>{{blade.sdrData._embedded.parentProject.name | sdrlang}}</h3>
+                        <p>{{blade.sdrData._embedded.parentProject.description | sdrlang}}</p>
+                    </div>
+
+                    <div class="md-list-item__delete" ng-click="blade.setParentProject()">
+                        <i class="material-icons">delete</i>
+                    </div>
+
+                </md-list-item>
+            </div>
+
             <div class="divider"></div>
         </div>
 
