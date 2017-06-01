@@ -9,7 +9,10 @@
 var gutil = require('gulp-util');
 
 function useCdn() {
-  return gutil.env.env.toLowerCase() != 'development' && gutil.env.env.toLowerCase() != 'staging';
+    if (gutil.env.env === undefined)
+        return true;
+
+    return gutil.env.env.toLowerCase() !== 'development' && gutil.env.env.toLowerCase() !== 'staging';
 }
 
 /**
