@@ -6,7 +6,8 @@
                  md-search-text="ctrl.searchText"
                  md-items="item in ctrl.search(ctrl.searchText)"
                  md-item-text="item.value"
-                 md-min-length="0">
+                 md-min-length="0"
+                 md-floating-label="{{'country' | translate}}">
     <md-item-template>
         <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.value}} </span>
     </md-item-template>

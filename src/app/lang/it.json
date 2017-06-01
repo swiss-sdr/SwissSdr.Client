@@ -61,6 +61,7 @@
         "file": "File",
         "venue": "Sede",
         "zip": "Codice postale",
+        "country": "IT: Land",
         "city": "Città",
         "start": "Inizio",
         "end": "Fine",
