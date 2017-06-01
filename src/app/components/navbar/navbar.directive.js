@@ -16,7 +16,7 @@ export function NavbarDirective() {
 }
 
 class NavbarController {
-    constructor(Auth, $state, Helpers, Config, User, $rootScope, $translate) {
+    constructor(Auth, $state, Helpers, Config, User, $rootScope, $translate, $http) {
         'ngInject';
 
         this.Auth = Auth;
@@ -25,6 +25,7 @@ class NavbarController {
         this.User = User;
         this.$rootScope = $rootScope;
         this.$translate = $translate;
+        this.$http = $http;
 
         this.selectedLangKey = this.Config.getLanguage().code;
 
@@ -35,10 +36,16 @@ class NavbarController {
                 return;
 
             self.me = user;
-            if (!self.me.profile) {
-                var arrNames = self.me.profile.name.split(" ");
-                self.me.nameShortCut = arrNames[0].substring(0, 1) + arrNames[1].substring(0, 1);
-            }
+
+            var arrNames = self.me.profile.name.split(" ");
+            self.me.profile.nameShortCut = arrNames[0].substring(0, 1) + arrNames[1].substring(0, 1);
+
+            self.$http.get(self.Config.apiHost + 'users/me',{cache:false}).then(function (user) {
+               if(user.data._embedded)
+                   self.me.profile.profileImage = user.data._embedded.profileImage.url;
+            });
+
+
 
             return user.profile.sub;
         }).then(function(userId){

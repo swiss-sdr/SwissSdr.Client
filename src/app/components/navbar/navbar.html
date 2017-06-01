@@ -46,7 +46,8 @@
                     <md-button aria-label="Mehr" ui-sref="main.people" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                         <md-icon ng-if="!navbar.me || navbar.me.profile.profileImage === undefined"><i class="material-icons">dehaze</i></md-icon>
 
-                        <img ng-if="navbar.me && navbar.me.profile.profileImage !== undefined" ng-src="{{navbar.me.profile.profileImage}}" class="md-avatar" alt="{{navbar.me.nameShortCut}}" />
+                        <!--<img ng-if="navbar.me && navbar.me.profile.profileImage !== undefined" ng-src="{{navbar.me.profile.profileImage}}" class="md-avatar" alt="{{navbar.me.nameShortCut}}" /> -->
+                        <div class="md-avatar" ng-if="navbar.me && navbar.me.profile.profileImage !== undefined">{{navbar.me.profile.nameShortCut}}</div>
                     </md-button>
 
                     <md-menu-content width="4">
