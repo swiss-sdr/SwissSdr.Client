@@ -151,6 +151,8 @@
     "nodata": "Daten können nicht geladen werden, Login erforderlich.",
     "showall": "Alle anzeigen",
 
+    "warnOpenEdit":"Um das Editblade zu öffnen, müssen sie zuerst in den entsprechenden Bereich wechseln. Möchten Sie den Bereich wechseln?",
+
     "relations": "Beziehungen",
     "relation": "Beziehung",
     "norelateduser": "Keine Benutzer zugeordnet.",

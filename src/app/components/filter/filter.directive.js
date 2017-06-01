@@ -121,7 +121,7 @@ class FilterController {
                 }),
                 AssociatedEntities: assocateds,
                 HasJobs : self.jobs,
-                Phase : self.phase
+                Phases : self.phase
             };
 
             if(angular.isDefined(this.from)){
