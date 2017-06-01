@@ -29,7 +29,7 @@
             <div flex="5"></div>
             <div class="md-title" flex="30">{{'fields.email' | translate}}</div>
             <div flex="5"></div>
-            <div class="md-title" flex="15">{{'fields.id' | translate}}</div>
+            <div class="md-title" flex="15">{{'fields.provider' | translate}}</div>
             <div class="md-title" flex="20"></div>
         </div>
 
@@ -51,7 +51,15 @@
             <div flex="5"></div>
             <div flex="30" layout="row" layout-align="start center">{{ i.eMail }}</div>
             <div flex="5"></div>
-            <div flex="15" layout="row" layout-align="start center">{{ i.id }}</div>
+            <div flex="15" layout="row">
+                <md-list>
+                    <md-list-item class="md-2-line" ng-repeat="item in i.loginProviders">
+                        <div class="md-list-item-text" layout="column">
+                            {{item}}
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
             <div flex="20" layout="row" layout-align="end center">
                 <md-button class="md-icon-button" ng-click="blade.delete(i,$index)" ng-if="blade.$rootScope.isAdmin">
                     <md-tooltip md-direction="top">
