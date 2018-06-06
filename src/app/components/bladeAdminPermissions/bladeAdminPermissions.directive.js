@@ -32,45 +32,58 @@ class BladeAdminPermissionsController {
         this.People = People;
 
         this.users = [];
-
-        this.objects = [];
+        this.listUsers = [];
         this.loading = false;
+        this.allLoading = false;
+        this.allLoaded = false;
 
         this.filterValue = '';
-        this.skip = 0;
-        this.filterSkip = 0;
-        this.take = 30;
+        this.fitlerParams = {
+            take: 30,
+        };
 
-        this.search =  this.debounce(()=>{
+        this.search = this.debounce(()=>{
             if(this.filterValue) {
                 this.loadSearchData();
             } else {
-                this.loadData();
+                this.$rootScope.$apply(()=>{
+                    this.users = this.listUsers;
+                });
             }
-        }, 500);
+        }, 250);
 
         this.loadData();
     }
 
     loadData() {
-        this.loading = true;
+        if (this.allLoading || this.allLoaded || this.filterValue) {
+            return;
+        }
 
-        this.User.getAll({skip:this.skip, take:this.take})
+        this.allLoading = true;
+
+        angular.extend(this.fitlerParams, {
+            skip: this.listUsers.length
+        });
+
+        this.User.getAll(this.fitlerParams)
             .then((data) => {
-                this.users = data.data;
+                this.listUsers = this.listUsers.concat(data.data);
+                this.users = this.listUsers;
+                this.allLoaded = data.data.length === 0;
             })
             .catch((err)=> {
                 console.error(err);
             })
             .then(()=>{
-                this.loading = false;
+                this.allLoading = false;
             });
     }
 
     loadSearchData() {
         this.loading = true;
 
-        this.User.getAll({skip:this.filterSkip, take:this.take, query:this.filterValue})
+        this.User.getAll({take:100, query:this.filterValue})
             .then((data)=>{
                 this.users = data.data;
             })

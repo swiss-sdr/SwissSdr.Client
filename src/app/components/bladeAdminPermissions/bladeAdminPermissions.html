@@ -23,7 +23,11 @@
 
 
     <!-- search results -->
-    <div layout="column">
+    <div layout="column"
+         infinite-scroll='blade.loadData()'
+         infinite-scroll-immediate-check='false'
+         infinite-scroll-distance='1'
+         infinite-scroll-container='".blade--overview"'>
         <div layout="row" class="b-padding">
             <div class="md-title" flex="30">{{'fields.name' | translate}}</div>
             <div flex="5"></div>
