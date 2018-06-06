@@ -33,24 +33,53 @@ class BladeAdminPermissionsController {
 
         this.users = [];
 
-        this.loading = true;
         this.objects = [];
         this.loading = false;
+
+        this.filterValue = '';
+        this.skip = 0;
+        this.filterSkip = 0;
+        this.take = 30;
+
+        this.search =  this.debounce(()=>{
+            if(this.filterValue) {
+                this.loadSearchData();
+            } else {
+                this.loadData();
+            }
+        }, 500);
 
         this.loadData();
     }
 
     loadData() {
-        let self = this;
-
-        if (this.loading)
-            return;
-
         this.loading = true;
 
-        self.User.getAll().then(function (data) {
-            self.users = data.data;
-        });
+        this.User.getAll({skip:this.skip, take:this.take})
+            .then((data) => {
+                this.users = data.data;
+            })
+            .catch((err)=> {
+                console.error(err);
+            })
+            .then(()=>{
+                this.loading = false;
+            });
+    }
+
+    loadSearchData() {
+        this.loading = true;
+
+        this.User.getAll({skip:this.filterSkip, take:this.take, query:this.filterValue})
+            .then((data)=>{
+                this.users = data.data;
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+            .then(()=>{
+                this.loading = false;
+            })
     }
 
     openEdit(i,index) {
@@ -85,6 +114,21 @@ class BladeAdminPermissionsController {
             }
         );
         return promise;
+    }
+
+    debounce(func, wait, immediate) {
+        let timeout;
+        return function() {
+            let context = this, args = arguments;
+            let later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            let callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
     }
 
     delete(object,index){

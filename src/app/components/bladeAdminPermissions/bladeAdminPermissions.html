@@ -16,7 +16,7 @@
         <div flex="100">
             <md-input-container>
                 <label>{{'filter' | translate}}</label>
-                <input ng-model="filterValue">
+                <input ng-model="blade.filterValue" ng-change="blade.search()">
             </md-input-container>
         </div>
     </div>
@@ -38,7 +38,9 @@
             {{'noentries' | translate}}
         </div>
 
-        <div layout="row"  ng-repeat="i in blade.users | filter:filterValue" class="md-list-selectable">
+        <md-progress-circular md-mode="indeterminate" ng-if="blade.loading" md-diameter="25px"></md-progress-circular>
+
+        <div layout="row"  ng-repeat="i in blade.users" class="md-list-selectable"  ng-if="!blade.loading">
             <div flex="30">
                 <md-list>
                     <md-list-item class="md-2-line">
