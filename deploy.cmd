@@ -50,7 +50,11 @@ IF NOT DEFINED KUDU_SYNC_CMD (
 
 :: Install Yarn
 echo Verifying Yarn Install.
-call :ExecuteCmd npm install yarn -g
+call :ExecuteCmd npm install yarn -g --silent
+FOR /F "tokens=* USEBACKQ" %%F IN (`npm config get prefix`) DO (
+	SET "PATH=%PATH%;%%F"
+)
+IF !ERRORLEVEL! NEQ 0 goto error
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :: Deployment
